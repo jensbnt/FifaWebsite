@@ -1,0 +1,409 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0px;
+    margin-top: 75px;
+    background: #7171C1;
+    overflow: scroll;
+    overflow-x: hidden;
+}
+
+*:focus {
+    outline: none;
+}
+
+.invisible {
+    display: none;
+}
+
+/* Remove scrollbar: https://stackoverflow.com/questions/16670931/hide-scroll-bar-but-while-still-being-able-to-scroll */
+
+::-webkit-scrollbar {
+    width: 0px;  /* remove scrollbar space */
+    background: transparent;  /* optional: just make scrollbar invisible */
+}
+
+/* NAVIGATION */
+
+.navigation {
+    margin: 0;
+    padding: 0;
+    position: fixed;
+    z-index: 1;
+    width: 100%;
+    min-width: 800px;
+    top: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+.navigation ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.navigation li {
+    float: left;
+}
+
+.navigation li.right {
+    float: right;
+}
+
+.navigation li a {
+    display: flex;
+    height: 25px;
+    color: white;
+    padding: 14px 16px;
+    text-decoration: none;
+    align-items: center;
+}
+
+.navigation li:hover:not(.active) {
+    background-color: #111;
+}
+
+.navigation li .searchbar {
+    height: 25px;
+    margin: 13px 16px 11px;
+    padding-left: 12px;
+    align-items: center;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
+.navigation .active {
+    background-color: #4C4CAE;
+}
+
+/* THREADS */
+
+.thread {
+    width: 750px;
+    padding: 20px 30px 5px;
+    margin: 20px auto;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background: #EDEDF7;
+}
+
+/* THREADS: header */
+
+.thread .header {
+    margin: -20px -30px 20px;
+    height: 65px;
+    background-color: #ccc;
+    text-align: center;
+}
+
+.thread .header i, .thread .header h1 {
+    float: left;
+    line-height: 60px;
+    font-size: 40px;
+    margin: 0px 5px;
+    width: auto;
+}
+
+/* THREADS: text */
+
+.thread h2 {
+    margin: 16px 0px;
+}
+
+.thread p {
+    margin: 16px 0px;
+}
+
+.thread a {
+    color: #4C4CAE;
+    text-decoration: none;
+}
+
+/* THREADS: forms */
+
+.thread input[type=text], .thread input[type=password], .thread input[type=number] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.thread textarea {
+    width: 100%;
+    height: 100px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    resize: none;
+}
+
+.thread select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.thread button {
+    background-color: #4C4CAE; /* COLOR */
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.thread button:hover {
+    opacity: 0.8;
+}
+
+.thread form p {
+    width: 100%;
+    color: #757575;
+    text-align: center;
+}
+
+/* THREADS: options */
+
+.thread .options ul {
+    list-style-type: none;
+    margin: 16px 0px;
+    padding: 0px;
+}
+
+.thread .options ul li {
+    margin: 10px 0px;
+}
+
+.thread .options ul li a {
+    color: #4C4CAE;
+    text-decoration: none;
+}
+
+/* THREADS: checkboxes : https://www.w3schools.com/howto/howto_css_custom_checkbox.asp */
+
+/* Customize the label (the container) */
+.container {
+    display: block;
+    position: relative;
+    padding-left: 35px;
+    margin-bottom: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.container input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #4C4CAE;
+}
+
+/* On mouse-over, add a grey background color */
+.container:hover input ~ .checkmark {
+    background-color: #4C4CAE;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+    background-color: #4C4CAE;
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+    display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+    left: 6px;
+    top: 3px;
+    width: 4px;
+    height: 7px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+    -ms-transform: rotate(45deg);
+    transform: rotate(45deg);
+}
+
+/* THREADS: palette */
+
+.thread span.color {
+    color: black;
+    display: inline-block;
+    text-align: center;
+    padding: 14px 0px;
+    margin: 0px;
+    border: none;
+    width: 100%;
+}
+
+/* TABLETHREADS */
+
+.tablethread {
+    width: 750px;
+    margin: 20px auto;
+    border: 3px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    background: #EDEDF7;
+}
+
+.tablethread .header {
+    margin: 0px;
+    height: 65px;
+    background-color: #ccc;
+    text-align: center;
+}
+
+.tablethread .header i, .tablethread .header h1 {
+    float: left;
+    line-height: 60px;
+    font-size: 40px;
+    margin: 0px 5px;
+    width: auto;
+}
+
+.dbtable {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ccc;
+}
+
+.dbtable td, .dbtable th {
+    border: 0px;
+    padding: 8px;
+}
+
+.dbtable tr:nth-child(even){background-color: #e6e6e6;}
+
+.dbtable tr:hover {background-color: #ddd;}
+
+.dbtable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4C4CAE;
+    color: white;
+}
+
+.dbtable a {
+    color: #4C4CAE;
+    text-decoration: none;
+}
+
+.dbtable .del {
+    width: 10%;
+}
+
+/* NAVIGATION */
+
+ul.pagination {
+    display: block;
+    width: 750px;
+    margin: 20px auto;
+    list-style-type: none;
+    padding: 0;
+    text-align: center;
+}
+
+ul.pagination li {
+    display: inline-block;
+    padding: 8px 16px;
+    margin: 0px;
+    border-radius: 3px;
+}
+
+ul.pagination li a {
+    color: black;
+    text-decoration: none;
+}
+
+ul.pagination li.active {
+    color: #fff;
+    background-color: #4C4CAE;
+    text-decoration: none;
+}
+
+ul.pagination li.disabled {
+    display: none;
+}
+
+/* MESSAGE */
+
+.message {
+    display: block;
+    width: 750px;
+    margin: 20px auto;
+    padding: 5px;
+    border: 1px solid #333;
+    border-radius: 5px;
+    height: 40px;
+    line-height: 23px;
+    box-sizing: border-box;
+    color: white;
+    background: #4C4CAE;
+    vertical-align: middle;
+}
+
+.message p, .message i {
+    display: inline-block;
+    vertical-align: middle;
+    margin: 0px 5px;
+}
+
+/* FOOTER */
+
+footer
+{
+    margin: auto;
+    width: 800px;
+    padding: 10px;
+    border-top: 1px solid #3B3A36;
+    color: #3B3A36;
+}
+
+footer p
+{
+    margin: 10px 0px;
+}
+
+footer p a
+{
+    color: #3B3A36;
+}
+
+footer p a:link, footer a:visited
+{
+    text-decoration: none;
+}
