@@ -13,7 +13,7 @@ class PlayerController extends Controller
         $name = $request->has('name') ? $request->input('name') : "";
         $term = "%" . $name . "%";
 
-        $players = Player::where('name', 'LIKE', $term)->paginate(30);
+        $players = Player::where('name', 'LIKE', $term)->orderBy('rating', 'desc')->paginate(30);
         $count = Player::where('name', 'LIKE', $term)->count();
 
         return view('players.index', ['players' => $players->appends($request->except('page')), 'count' => $count, 'name' => $name]);
