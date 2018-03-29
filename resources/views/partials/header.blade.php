@@ -1,17 +1,29 @@
-<div class="navigation">
-    <nav>
-        <ul>
-            <li><a href="{{ route('pages.index') }}"><i class="material-icons">home</i></a></li>
-            <li><a href="{{ route('players.index') }}">Players</a></li>
-            <li><a href="{{ route('teams.index') }}">Teams</a></li>
-            <li class="right"><a href="">Log out</a></li>
-            <li class="right"><a href=""><i class="material-icons">account_circle</i></a></li>
-            <li class="right"><a href=""><i class="material-icons">mail_outline</i></a></li>
-            <li class="right">
-                <form action="" method="get">
-                    <input type="text" class="searchbar" placeholder="Search" name="Zoekterm">
-                </form>
-            </li>
+<nav class="navbar navbar-fixed-top navbar-expand-md navbar-dark bg-dark" role="navigation">
+    <a class="navbar-brand" href="{{ route('pages.index') }}">FifaApp</a>
+    <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+            @if(Auth::check())
+                <li class="nav-item"><a class="nav-link" href="{{ route('players.index') }}">Players</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('teams.index') }}">Teams</a></li>
+            @endif
         </ul>
-    </nav>
-</div>
+        <ul class="nav navbar-nav ml-auto">
+            @if(!Auth::check())
+                <li class="nav-item"><a class="nav-link" href="{{ route('auth.signin') }}">Login</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('auth.register') }}">Register</a></li>
+            @else
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('logout') }}"
+                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                        Logout
+                    </a>
+
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                        {{ csrf_field() }}
+                    </form>
+                </li>
+            @endif
+        </ul>
+    </div>
+</nav>

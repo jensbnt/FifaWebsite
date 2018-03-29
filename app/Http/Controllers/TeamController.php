@@ -27,6 +27,10 @@ class TeamController extends Controller
     }
 
     public function postTeamsDelete(Request $request) {
+        $this->validate($request, [
+            'teamid' => 'required'
+        ]);
+
         $team = Team::find($request->input('teamid'));
 
         if(!isset($team))
@@ -39,6 +43,10 @@ class TeamController extends Controller
     }
 
     public function postTeamPlayerDelete(Request $request) {
+        $this->validate($request, [
+            'teamplayerid' => 'required'
+        ]);
+
         $teamPlayer = TeamPlayer::find($request->input('teamplayerid'));
 
         if(!isset($teamPlayer))

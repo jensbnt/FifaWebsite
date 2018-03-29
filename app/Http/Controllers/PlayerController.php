@@ -31,6 +31,10 @@ class PlayerController extends Controller
     }
 
     public function postPlayersView($id, Request $request) {
+        $this->validate($request, [
+            'teamid' => 'required'
+        ]);
+
         $player = Player::find($id);
 
         if(!isset($player))

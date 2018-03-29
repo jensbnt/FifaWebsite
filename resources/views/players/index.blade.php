@@ -1,40 +1,68 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="thread">
-        <div class="header">
-            <i class="material-icons">person</i>
-            <h1>Filter</h1>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8">
+                <h1>Filter players</h1>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        <form class="form-horizontal" method="GET" action="{{ route('players.index') }}">
+                            {{ csrf_field() }}
+
+                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+                                <label for="name" class="col-md-4 control-label">Name</label>
+
+                                <div class="col-md-6">
+                                    <input id="email" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
+
+                                    @if ($errors->has('name'))
+                                        <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-8">
+                                    <button type="submit" class="btn btn-dark">
+                                        Filter
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
-        <form action="{{ route('players.index') }}" method="get">
-            <input type="text" name="name" placeholder="Name" value="{{ isset($name) ? $name : "" }}">
-            <button type="submit" class="submitBtn">Filter</button>
-            @include('partials.errors')
-        </form>
-    </div>
-    <div class="tablethread">
-        <div class="header">
-            <i class="material-icons">person</i>
-            <h1>All players ({{ $count }} results)</h1>
+        <div class="row">
+            <div class="col-md">
+                <table class="table table-striped table-hover">
+                    <caption>All players ({{ $count }} results)</caption>
+                    <thead class="thead-dark">
+                    <tr>
+                        <th scope="col" style="width: 10%">ID</th>
+                        <th scope="col" style="width: 60%">Name</th>
+                        <th scope="col" style="width: 10%">Rating</th>
+                        <th scope="col" style="width: 10%">Position</th>
+                        <th scope="col" style="width: 10%">Cardtype</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach($players as $player)
+                        <tr>
+                            <th scope="row">{{ $player->id }}</th>
+                            <td><a href="{{ route('players.view', ['id' => $player->id]) }}">{{ $player->name }}</a></td>
+                            <td>{{ $player->rating }}</td>
+                            <td>{{ $player->position }}</td>
+                            <td>{{ $player->cardtype }}</td>
+                        </tr>
+                    @endforeach
+                    </tbody>
+                </table>
+                {{ $players->links() }}
+            </div>
         </div>
-        <table class='dbtable'>
-            <tr>
-                <th>ID</th>
-                <th>Name</th>
-                <th>Rating</th>
-                <th>Position</th>
-                <th>Cardtype</th>
-            </tr>
-            @foreach($players as $player)
-                <tr>
-                    <td>{{ $player->id }}</td>
-                    <td><a href="{{ route('players.view', ['id' => $player->id]) }}">{{ $player->name }}</a></td>
-                    <td>{{ $player->rating }}</td>
-                    <td>{{ $player->position }}</td>
-                    <td>{{ $player->cardtype }}</td>
-                </tr>
-            @endforeach
-        </table>
-        {{ $players->links() }}
     </div>
 @endsection

@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('pages.index');
 })->name('pages.index');
 
-Route::group(['prefix' => 'players'], function () {
+Route::group(['prefix' => 'players', 'middleware' => 'auth'], function () {
     Route::get('', [
         'uses' => 'PlayerController@getPlayersIndex',
         'as' => 'players.index'
@@ -32,7 +32,7 @@ Route::group(['prefix' => 'players'], function () {
     ]);
 });
 
-Route::group(['prefix' => 'teams'], function () {
+Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
     Route::get('', [
         'uses' => 'TeamController@getTeamsIndex',
         'as' => 'teams.index'
@@ -58,3 +58,25 @@ Route::group(['prefix' => 'teams'], function () {
         'as' => 'teams.view'
     ]);
 });
+
+Auth::routes();
+
+Route::get('login', [
+    'uses' => 'SigninController@getLogin',
+    'as' => 'auth.signin'
+]);
+
+Route::post('login', [
+    'uses' => 'SigninController@postLogin',
+    'as' => 'auth.signin'
+]);
+
+Route::get('register', [
+    'uses' => 'SigninController@getRegister',
+    'as' => 'auth.register'
+]);
+
+Route::post('register', [
+    'uses' => 'SigninController@postRegister',
+    'as' => 'auth.register'
+]);
