@@ -2,44 +2,116 @@
 
 namespace App\Http\Controllers;
 
+use App\Player;
 use App\Team;
 use App\TeamPlayer;
 use Illuminate\Http\Request;
 
 class TeamController extends Controller
 {
+    /* INDEX */
+
     public function getTeamsIndex() {
         $teams = Team::all();
         return view('teams.index', ['teams' => $teams]);
     }
 
+    /* ADD */
+
+    public function getTeamsAdd() {
+        return view('teams.add');
+    }
+
     public function postTeamsAdd(Request $request) {
         $this->validate($request, [
-            'name' => 'required|min:2'
+            'name' => 'required|min:2',
+            'description' => 'min:2'
         ]);
 
         $team = new Team([
-            'name' => $request->input('name')
+            'name' => $request->input('name'),
+            'description' => $request->input('description')
         ]);
         $team->save();
 
-        return redirect()->route('teams.index')->with('info', 'Team created: ' . $request->input('name'));
+        return redirect()->route('teams.index')->with('info', 'Team created: ' . $team->name);
     }
 
-    public function postTeamsDelete(Request $request) {
+    /* EDIT */
+
+    public function getTeamsEdit($id) {
+        $team = Team::find($id);
+
+        if(!isset($team))
+            return view('pages.error', ['message' => "No team with id: " . $id]);
+
+        return view('teams.edit', ['team' => $team]);
+    }
+
+    public function postTeamsEdit($id, Request $request) {
+        $this->validate($request, [
+            'name' => 'required|min:2',
+            'description' => 'min:2'
+        ]);
+
+        $team = Team::find($id);
+
+        if(!isset($team))
+            return view('pages.error', ['message' => "No team with id: " . $id]);
+
+        $team->name = $request->input('name');
+        $team->description = $request->input('description');
+        $team->save();
+
+        return redirect()->route('teams.index')->with('info', 'Team updated: ' . $team->name);
+    }
+
+    /* DELETE */
+
+    public function getTeamsDelete($id) {
+        $team = Team::find($id);
+
+        if(!isset($team))
+            return view('pages.error', ['message' => "No team with id: " . $id]);
+
+        TeamPlayer::where('team_id', $team->id)->delete();
+        $team->delete();
+
+        return redirect()->route('teams.index')->with('info', 'Team deleted: ' . $team->name);
+    }
+
+    /* TEAMPLAYER */
+
+    public function postTeamPlayerAdd($id, Request $request) {
         $this->validate($request, [
             'teamid' => 'required'
         ]);
+
+        $player = Player::find($id);
+
+        if(!isset($player))
+            return view('pages.error', ['message' => "No player with id: " . $id]);
 
         $team = Team::find($request->input('teamid'));
 
         if(!isset($team))
             return view('pages.error', ['message' => "No team with id: " . $request->input('teamid')]);
 
-        TeamPlayer::where('team_id', $team->id)->delete();
-        $team->delete();
+        $existingPlayer = TeamPlayer::where([
+            ['player_id', $id],
+            ['team_id', $request->input('teamid')]
+        ])->first();
 
-        return redirect()->route('teams.index')->with('info', 'Team deleted: ' . $team->name);
+        if (isset($existingPlayer))
+            return redirect()->route('players.view', ['id' => $id])->with('info', '"' . $player->name . '" is already in this team');
+
+        $teamplayer = new TeamPlayer([
+            'player_id' => $id,
+            'team_id' => $request->input('teamid')
+        ]);
+        $teamplayer->save();
+
+        return redirect()->route('players.view', ['id' => $id])->with('info', '"' . $player->name . '" added to ' . $team->name);
     }
 
     public function postTeamPlayerDelete(Request $request) {
@@ -52,10 +124,14 @@ class TeamController extends Controller
         if(!isset($teamPlayer))
             return view('pages.error', ['message' => "No teamplayer with id: " . $request->input('teamplayerid')]);
 
+        $id = $teamPlayer->team_id;
+
         $teamPlayer->delete();
 
-        return redirect()->route('teams.index')->with('info', 'Player deleted from team');
+        return redirect()->route('teams.view', ['id' => $id])->with('info', '"' . $teamPlayer->player->name . '" deleted from team');
     }
+
+    /* TEAM VIEW */
 
     public function getTeamsView($id) {
         $team = Team::find($id);
@@ -63,6 +139,8 @@ class TeamController extends Controller
         if(!isset($team))
             return view('pages.error', ['message' => "No team with id: " . $id]);
 
-        return view('teams.view', ['team' => $team]);
+        $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('player_id')->get();
+
+        return view('teams.view', ['team' => $team, 'teamplayers' => $teamplayers]);
     }
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Team extends Model
 {
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'description'];
 
     public function teamPlayers() {
         return $this->hasMany('\App\TeamPlayer', 'team_id', 'id');

@@ -12,123 +12,135 @@ class TeamPlayerTableSeeder extends Seeder
     public function run()
     {
         /* Barcelona Default */
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 46,
+        $teamplayer = new App\TeamPlayer([ // Messi
+            'player_id' => 2,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 64,
+        $teamplayer = new App\TeamPlayer([ // Suarez
+            'player_id' => 14,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 244,
+        $teamplayer = new App\TeamPlayer([ // Dembele
+            'player_id' => 689,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 245,
+        $teamplayer = new App\TeamPlayer([ // Iniesta
+            'player_id' => 140,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 246,
+        $teamplayer = new App\TeamPlayer([ // Busquets
+            'player_id' => 258,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 307,
+        $teamplayer = new App\TeamPlayer([ // Coutinho
+            'player_id' => 274,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 311,
+        $teamplayer = new App\TeamPlayer([ // Semodo
+            'player_id' => 1179,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 747,
+        $teamplayer = new App\TeamPlayer([ // Umtiti
+            'player_id' => 778,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 772,
+        $teamplayer = new App\TeamPlayer([ // Pique
+            'player_id' => 320,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 1139,
+        $teamplayer = new App\TeamPlayer([ // Alba
+            'player_id' => 202,
+            'team_id' => 1
+        ]);
+        $teamplayer->save();
+
+        $teamplayer = new App\TeamPlayer([ // Ter stegen
+            'player_id' => 1792,
             'team_id' => 1
         ]);
         $teamplayer->save();
 
         /* Real Madrid Default */
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 32,
+        $teamplayer = new App\TeamPlayer([ // Ronaldo
+            'player_id' => 1,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 132,
+        $teamplayer = new App\TeamPlayer([ // Benezma
+            'player_id' => 263,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 134,
+        $teamplayer = new App\TeamPlayer([ // Bale
+            'player_id' => 67,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 169,
+        $teamplayer = new App\TeamPlayer([ // Modric
+            'player_id' => 9,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 170,
+        $teamplayer = new App\TeamPlayer([ // Kroos
+            'player_id' => 47,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 308,
+        $teamplayer = new App\TeamPlayer([ // Casemiro
+            'player_id' => 204,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 326,
+        $teamplayer = new App\TeamPlayer([ // Marcelo
+            'player_id' => 24,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 411,
+        $teamplayer = new App\TeamPlayer([ // Ramos
+            'player_id' => 4,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 505,
+        $teamplayer = new App\TeamPlayer([ // Nacho
+            'player_id' => 364,
             'team_id' => 2
         ]);
         $teamplayer->save();
 
-        $teamplayer = new App\TeamPlayer([
-            'player_id' => 1205,
+        $teamplayer = new App\TeamPlayer([ // Carvajal
+            'player_id' => 551,
+            'team_id' => 2
+        ]);
+        $teamplayer->save();
+
+        $teamplayer = new App\TeamPlayer([ // Navas
+            'player_id' => 1829,
             'team_id' => 2
         ]);
         $teamplayer->save();

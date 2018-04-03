@@ -27,8 +27,23 @@ Route::group(['prefix' => 'players', 'middleware' => 'auth'], function () {
     ]);
 
     Route::post('view/{id}', [
-        'uses' => 'PlayerController@postPlayersView',
+        'uses' => 'TeamController@postTeamPlayerAdd',
         'as' => 'players.view'
+    ]);
+
+    Route::get('add', [
+        'uses' => 'PlayerController@getPlayersAdd',
+        'as' => 'players.add'
+    ]);
+
+    Route::post('add', [
+        'uses' => 'PlayerController@postPlayersAdd',
+        'as' => 'players.add'
+    ]);
+
+    Route::get('delete/{id}', [
+        'uses' => 'PlayerController@getPlayersDelete',
+        'as' => 'players.delete'
     ]);
 });
 
@@ -38,13 +53,28 @@ Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
         'as' => 'teams.index'
     ]);
 
+    Route::get('add', [
+        'uses' => 'TeamController@getTeamsAdd',
+        'as' => 'teams.add'
+    ]);
+
     Route::post('add', [
         'uses' => 'TeamController@postTeamsAdd',
         'as' => 'teams.add'
     ]);
 
-    Route::post('delete', [
-        'uses' => 'TeamController@postTeamsDelete',
+    Route::get('edit/{id}', [
+        'uses' => 'TeamController@getTeamsEdit',
+        'as' => 'teams.edit'
+    ]);
+
+    Route::post('edit/{id}', [
+        'uses' => 'TeamController@postTeamsEdit',
+        'as' => 'teams.edit'
+    ]);
+
+    Route::get('delete/{id}', [
+        'uses' => 'TeamController@getTeamsDelete',
         'as' => 'teams.delete'
     ]);
 

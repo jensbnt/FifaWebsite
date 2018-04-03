@@ -3,50 +3,46 @@
 @section('content')
     <div class="container">
         <div class="row">
-            <div class="col-md-8">
-                <h1>Filter players</h1>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <form class="form-horizontal" method="GET" action="{{ route('players.index') }}">
-                            {{ csrf_field() }}
+            <div class="col-md">
+                @include('partials.message')
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
+                <form class="form-horizontal" method="GET" action="{{ route('players.index') }}">
+                    {{ csrf_field() }}
 
-                            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                                <label for="name" class="col-md-4 control-label">Name</label>
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <input id="name" type="text" class="form-control" name="name" placeholder="name" value="{{ old('name') != "" ? old('name') : $name }}">
 
-                                <div class="col-md-6">
-                                    <input id="email" type="text" class="form-control" name="name" value="{{ old('name') }}" autofocus>
+                            @if ($errors->has('name'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('name') }}</strong>
+                                </span>
+                            @endif
+                        </div>
 
-                                    @if ($errors->has('name'))
-                                        <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-8">
-                                    <button type="submit" class="btn btn-dark">
-                                        Filter
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-dark">
+                                Filter
+                            </button>
+                        </div>
                     </div>
-                </div>
+                </form>
             </div>
         </div>
         <div class="row">
             <div class="col-md">
                 <table class="table table-striped table-hover">
-                    <caption>All players ({{ $count }} results)</caption>
+                    <caption>Players - {{ $count }} results</caption>
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col" style="width: 10%">ID</th>
-                        <th scope="col" style="width: 60%">Name</th>
+                        <th scope="col" style="width: 55%">Name</th>
                         <th scope="col" style="width: 10%">Rating</th>
                         <th scope="col" style="width: 10%">Position</th>
-                        <th scope="col" style="width: 10%">Cardtype</th>
+                        <th scope="col" style="width: 15%">Cardtype</th>
                     </tr>
                     </thead>
                     <tbody>

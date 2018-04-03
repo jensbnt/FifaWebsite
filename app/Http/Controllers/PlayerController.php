@@ -30,35 +30,45 @@ class PlayerController extends Controller
         return view('players.view', ['player' => $player, 'teams' => $teams]);
     }
 
-    public function postPlayersView($id, Request $request) {
+    public function getPlayersAdd() {
+        $positions = Player::select('position')->groupBy('position')->get();
+        $cardtypes = Player::select('cardtype')->groupBy('cardtype')->get();
+
+        return view('players.add', ['positions' => $positions, 'cardtypes' => $cardtypes]);
+    }
+
+    public function postPlayersAdd(Request $request) {
         $this->validate($request, [
-            'teamid' => 'required'
+            'name' => 'required|min:2',
+            'rating' => 'required|numeric|min:0|max:99',
+            'position' => 'required',
+            'cardtype' => 'required'
         ]);
 
+        $player = new Player([
+            'name' => $request->input('name'),
+            'rating' => $request->input('rating'),
+            'position' => $request->input('position'),
+            'cardtype' => $request->input('cardtype'),
+            'seeded' => false
+        ]);
+        $player->save();
+
+        return redirect()->route('players.index')->with('info', 'Player added: "' . $player->name . '"');
+    }
+
+    public function getPlayersDelete($id) {
         $player = Player::find($id);
 
         if(!isset($player))
             return view('pages.error', ['message' => "No player with id: " . $id]);
 
-        $team = Team::find($request->input('teamid'));
+        if($player->seeded)
+            return redirect()->route('players.view', ['id' => $id])->with('fail', "You can't delete this player!");
 
-        if(!isset($team))
-            return view('pages.error', ['message' => "No team with id: " . $request->input('teamid')]);
+        TeamPlayer::where('player_id', $player->id)->delete();
+        $player->delete();
 
-        $existingPlayer = TeamPlayer::where([
-            ['player_id', $id],
-            ['team_id', $request->input('teamid')]
-        ])->first();
-
-        if (isset($existingPlayer))
-            return redirect()->route('players.view', ['id' => $id])->with('info', 'Player already in this team');
-
-        $teamplayer = new TeamPlayer([
-            'player_id' => $id,
-            'team_id' => $request->input('teamid')
-        ]);
-        $teamplayer->save();
-
-        return redirect()->route('players.view', ['id' => $id])->with('info', 'Player added');
+        return redirect()->route('players.index')->with('info', 'Player deleted: "' . $player->name . '"');
     }
 }

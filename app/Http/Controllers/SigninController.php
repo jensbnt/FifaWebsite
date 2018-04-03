@@ -21,9 +21,9 @@ class SigninController extends Controller
             'name' => $request->input('name'),
             'password' => $request->input('password')
         ], $request->has('remember'))) {
-            return redirect()->route('players.index')->with('fail', 'Authentication failed');
+            return redirect()->route('pages.index');
         } else {
-            return redirect()->back();
+            return redirect()->back()->with('fail', 'Authentication failed');
         }
     }
 

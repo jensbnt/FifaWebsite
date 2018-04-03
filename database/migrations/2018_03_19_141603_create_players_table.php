@@ -20,6 +20,7 @@ class CreatePlayersTable extends Migration
             $table->integer('rating');
             $table->string('position');
             $table->string('cardtype');
+            $table->boolean('seeded')->default(true);
         });
     }
 
