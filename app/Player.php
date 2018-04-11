@@ -38,9 +38,13 @@ class Player extends Model
 
     public function contributions() {
         $total = 0;
+        $count = 0;
         foreach ($this->teamPlayers as $teamplayer) {
             $total += $teamplayer->contributions();
+            $count++;
         }
-        return round($total / count($this->teamPlayers()), 3);
+
+
+        return $count == 0 ? 0 : round($total / $count, 3);
     }
 }

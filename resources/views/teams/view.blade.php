@@ -22,7 +22,6 @@
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">ID</th>
                         <th scope="col">Name</th>
                         <th scope="col">Rating</th>
                         <th scope="col">Position</th>
@@ -36,7 +35,6 @@
                     <tbody>
                     @foreach($teamplayers as $teamplayer)
                         <tr>
-                            <th scope="row">{{ $teamplayer->player->id }}</th>
                             <td><a href="{{ route('teams.playerview', ['id' => $teamplayer->id]) }}">{{ $teamplayer->player->name }}</a></td>
                             <td>{{ $teamplayer->player->rating }}</td>
                             <td>{{ $teamplayer->player->position }}</td>

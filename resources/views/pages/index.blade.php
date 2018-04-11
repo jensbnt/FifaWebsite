@@ -25,6 +25,17 @@
                     <p><a href="{{ route('teams.index') }}">Teams</a></p>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-md">
+                    <h1>To Do</h1>
+                    <p>Graphics</p>
+                    <p>Delete -> remove bla bla</p>
+                    <p>+- Game</p>
+                    <p>Player sort</p>
+                    <p>User binded teams & teamplayers</p>
+                    <p>Admin sections & accounts</p>
+                </div>
+            </div>
         @endif
     </div>
 @endsection

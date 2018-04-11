@@ -8,7 +8,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-5 offset-md-1">
+            <div class="col-md-5">
                 <div class="card mb-3">
                     <div class="card-body">
                         <h2>{{ $player->name }}</h2>
@@ -34,6 +34,9 @@
                     </div>
                 </div>
             </div>
+            <div class="col-md-2">
+                <img class="card-img-top" src="https://scontent-bru2-1.xx.fbcdn.net/v/t1.0-9/946456_944542755634087_2714740851044266309_n.jpg?_nc_cat=0&oh=adc3e36247aa303879371ccf71fe5f31&oe=5B2C4C6C" alt="Card image cap">
+            </div>
             <div class="col-md-5">
                 <ul class="list-group mb-3">
                     <li class="list-group-item"><h2>Current teams</h2></li>
@@ -47,7 +50,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-10 offset-md-1">
+            <div class="col-md">
                 <div class="card">
                     <div class="card-header">
                         <h3>Add to team</h3>
@@ -57,7 +60,7 @@
                             {{ csrf_field() }}
 
                             <div class="row form-group">
-                                <div class="col-md-8">
+                                <div class="col-md-10">
                                     <select id="teamid" class="form-control" name="teamid">
                                         <option selected></option>
                                         @foreach($teams as $team)
