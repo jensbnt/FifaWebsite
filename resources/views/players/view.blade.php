@@ -15,6 +15,19 @@
                         <p>Rating: {{ $player->rating }}</p>
                         <p>Position: {{ $player->position }}</p>
                         <p>Type: {{ $player->cardtype }}</p>
+                        <hr>
+                        <p>Total games: {{ $player->games() }}</p>
+                        <p>Total goals: {{ $player->goals() }}</p>
+                        <p>Total assists: {{ $player->assists() }}</p>
+                        <p>Total contributions:
+                            @if($player->contributions() < 0.5)
+                                <span style="color: #ff0000;">{{ $player->contributions() }}</span>
+                            @elseif($player->contributions() < 1)
+                                <span style="color: #ffa500;">{{ $player->contributions() }}</span>
+                            @else
+                                <span style="color: #2ca02c;">{{ $player->contributions() }}</span>
+                            @endif
+                        </p>
                     </div>
                     <div class="card-footer text-muted">
                         <a href="" data-toggle="modal" data-target="#confirm-delete">Delete player</a>

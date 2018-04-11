@@ -44,7 +44,15 @@
                             <td>{{ $teamplayer->games }}</td>
                             <td>{{ $teamplayer->goals }}</td>
                             <td>{{ $teamplayer->assists }}</td>
-                            <td>{{ $teamplayer->contributions() }}</td>
+                            <td>
+                                @if($teamplayer->contributions() < 0.5)
+                                    <span style="color: #ff0000;">{{ $teamplayer->contributions() }}</span>
+                                @elseif($teamplayer->contributions() < 1)
+                                    <span style="color: #ffa500;">{{ $teamplayer->contributions() }}</span>
+                                @else
+                                    <span style="color: #2ca02c;">{{ $teamplayer->contributions() }}</span>
+                                @endif
+                            </td>
                         </tr>
                     @endforeach
                     </tbody>
