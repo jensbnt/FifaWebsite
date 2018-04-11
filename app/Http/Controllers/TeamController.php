@@ -143,4 +143,35 @@ class TeamController extends Controller
 
         return view('teams.view', ['team' => $team, 'teamplayers' => $teamplayers]);
     }
+
+    /* TEAMPLAYER VIEW */
+
+    public function getTeamsPlayerView($id) {
+        $teamplayer = TeamPlayer::find($id);
+
+        if(!isset($teamplayer))
+            return view('pages.error', ['message' => "No teamplayer with id: " . $id]);
+
+        return view('teams.playerview', ['teamplayer' => $teamplayer]);
+    }
+
+    public function postTeamsPlayerView($id, Request $request) {
+        $this->validate($request, [
+            'games' => 'required|numeric|min:0',
+            'goals' => 'required|numeric|min:0',
+            'assists' => 'required|numeric|min:0'
+        ]);
+
+        $teamplayer = TeamPlayer::find($id);
+
+        if(!isset($teamplayer))
+            return view('pages.error', ['message' => "No teamplayer with id: " . $id]);
+
+        $teamplayer->games = $request->input('games');
+        $teamplayer->goals = $request->input('goals');
+        $teamplayer->assists = $request->input('assists');
+        $teamplayer->save();
+
+        return redirect()->route('teams.view', ['id' => $teamplayer->team_id])->with('info', $teamplayer->player->name . "'s stats edited");
+    }
 }

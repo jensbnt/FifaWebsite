@@ -87,6 +87,16 @@ Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
         'uses' => 'TeamController@getTeamsView',
         'as' => 'teams.view'
     ]);
+
+    Route::get('playerview/{id}', [
+        'uses' => 'TeamController@getTeamsPlayerView',
+        'as' => 'teams.playerview'
+    ]);
+
+    Route::post('playerview/{id}', [
+        'uses' => 'TeamController@postTeamsPlayerView',
+        'as' => 'teams.playerview'
+    ]);
 });
 
 Auth::routes();

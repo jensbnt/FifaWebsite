@@ -37,7 +37,7 @@
                     @foreach($teamplayers as $teamplayer)
                         <tr>
                             <th scope="row">{{ $teamplayer->player->id }}</th>
-                            <td><a href="{{ route('players.view', ['id' => $teamplayer->player->id]) }}">{{ $teamplayer->player->name }}</a></td>
+                            <td><a href="{{ route('teams.playerview', ['id' => $teamplayer->id]) }}">{{ $teamplayer->player->name }}</a></td>
                             <td>{{ $teamplayer->player->rating }}</td>
                             <td>{{ $teamplayer->player->position }}</td>
                             <td>{{ $teamplayer->player->cardtype }}</td>
@@ -56,15 +56,7 @@
                 <div class="card mb-3">
                     <h3 class="card-header">Manage stats</h3>
                     <div class="card-body">
-                        <form action="" method="post">
-                            {{ csrf_field() }}
 
-                            <div class="row form-group">
-                                <div class="col-md-8">
-
-                                </div>
-                            </div>
-                        </form>
                     </div>
                 </div>
             </div>
