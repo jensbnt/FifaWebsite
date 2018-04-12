@@ -48,9 +48,9 @@
 
                                 <div class="col-md-8">
                                     <select id="position" class="form-control" name="position">
-                                        <option selected></option>
+                                        <option {{ old('position') == "" ? "selected" : "" }}></option>
                                         @foreach($positions as $position)
-                                            <option value="{{ $position->position }}">{{ $position->position }}</option>
+                                            <option value="{{ $position->position }}" {{ old('position') == $position->position ? "selected" : "" }}>{{ $position->position }}</option>
                                         @endforeach
                                     </select>
 
@@ -67,9 +67,9 @@
 
                                 <div class="col-md-8">
                                     <select id="cardtype"  class="form-control" name="cardtype">
-                                        <option selected></option>
+                                        <option {{ old('position') == "" ? "selected" : "" }}></option>
                                         @foreach($cardtypes as $cardtype)
-                                            <option value="{{ $cardtype->cardtype }}">{{ $cardtype->cardtype }}</option>
+                                            <option value="{{ $cardtype->cardtype }}" {{ old('cardtype') == $cardtype->cardtype ? "selected" : "" }}>{{ $cardtype->cardtype }}</option>
                                         @endforeach
                                     </select>
 
