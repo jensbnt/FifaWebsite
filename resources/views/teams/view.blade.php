@@ -56,10 +56,10 @@
                         <th scope="col" style="width: 10%">Rating</th>
                         <th scope="col" style="width: 10%">Position</th>
                         <th scope="col" style="width: 15%">Type</th>
-                        <th scope="col" style="width: 10%">Gm</th>
-                        <th scope="col" style="width: 10%">Gl</th>
-                        <th scope="col" style="width: 10%">A</th>
-                        <th scope="col" style="width: 10%">C</th>
+                        <th scope="col" style="width: 10%">Games</th>
+                        <th scope="col" style="width: 10%">Goals</th>
+                        <th scope="col" style="width: 10%">Assists</th>
+                        <th scope="col" style="width: 10%">Contributions</th>
                     </tr>
                     </thead>
                     <tbody>
