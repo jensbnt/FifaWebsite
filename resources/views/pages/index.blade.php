@@ -14,13 +14,12 @@
         @else
             <div class="row">
                 <div class="col-md">
-                    <div class="card mb-3">
-                        <div class="card-body">
-                            <h1>Welcome</h1>
-                            <p>Jelle can't work with laravel or lavander.</p>
-                            <p><a href="{{ route('players.index') }}">Players</a></p>
-                            <p><a href="{{ route('teams.index') }}">Teams</a></p>
-                        </div>
+                    <div class="jumbotron">
+                        <h1 class="display-4">Welcome</h1>
+                        <p class="lead">"Jelle can't work with laravel or lavander." - Jens Beernaert 2018</p>
+                        <hr class="my-4">
+                        <p><a href="{{ route('players.index') }}">Players</a></p>
+                        <p><a href="{{ route('teams.index') }}">Teams</a></p>
                     </div>
                 </div>
             </div>
@@ -35,7 +34,7 @@
                         <li class="list-group-item"><b>v1.2</b> - Add a team description and edit teams</li>
                         <li class="list-group-item"><b>v1.1</b> - User logins</li>
                         <li class="list-group-item"><b>v1.0</b> - Players, teams and team players</li>
-                        <li class="list-group-item"><b>v0 and lower</b> - Design & testing</li>
+                        <li class="list-group-item"><b>v0</b> - Alpha build</li>
                     </ul>
                 </div>
                 <div class="col-md-6">
@@ -45,6 +44,7 @@
                         <li class="list-group-item">Player sort</li>
                         <li class="list-group-item">User owned teams and team players</li>
                         <li class="list-group-item">Admin sections and accounts</li>
+                        <li class="list-group-item">Trading manager</li>
                     </ul>
                 </div>
             </div>
