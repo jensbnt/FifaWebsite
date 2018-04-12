@@ -16,6 +16,64 @@ class TeamController extends Controller
         return view('teams.index', ['teams' => $teams]);
     }
 
+    /* TEAM VIEW */
+
+    public function getTeamsView($id) {
+        $team = Team::find($id);
+
+        if(!isset($team))
+            return view('pages.error', ['message' => "No team with id: " . $id]);
+
+        $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('player_id')->get();
+
+        return view('teams.view', ['team' => $team, 'teamplayers' => $teamplayers]);
+    }
+
+    public function postTeamsView($id, Request $request) {
+        $team = Team::find($id);
+
+        if(!isset($team))
+            return view('pages.error', ['message' => "No team with id: " . $id]);
+
+        if($request->has('games')) {
+            return $this->teamGameEdit($id, $request);
+        } else {
+            return $this->teamPlayerDelete($request);
+        }
+    }
+
+    public function teamGameEdit($id, Request $request) {
+        $this->validate($request, [
+            'games' => 'required|numeric'
+        ]);
+
+        $team = Team::find($id);
+
+        foreach ($team->teamPlayers as $teamPlayer) {
+            $teamPlayer->games += $request->input('games');
+            $teamPlayer->save();
+        }
+
+        return redirect()->route('teams.view', ['id' => $team->id])->with('info', "Games updated");
+    }
+
+    public function teamPlayerDelete(Request $request) {
+        $this->validate($request, [
+            'teamplayerid' => 'required'
+        ]);
+
+        $teamPlayer = TeamPlayer::find($request->input('teamplayerid'));
+
+        if(!isset($teamPlayer))
+            return view('pages.error', ['message' => "No teamplayer with id: " . $request->input('teamplayerid')]);
+
+        $id = $teamPlayer->team_id;
+
+        $teamPlayer->delete();
+
+        return redirect()->route('teams.view', ['id' => $id])->with('info', '"' . $teamPlayer->player->name . '" deleted from team');
+    }
+
     /* ADD */
 
     public function getTeamsAdd() {
@@ -112,56 +170,6 @@ class TeamController extends Controller
         $teamplayer->save();
 
         return redirect()->route('players.view', ['id' => $id])->with('info', '"' . $player->name . '" added to ' . $team->name);
-    }
-
-    public function postTeamPlayerDelete(Request $request) {
-        $this->validate($request, [
-            'teamplayerid' => 'required'
-        ]);
-
-        $teamPlayer = TeamPlayer::find($request->input('teamplayerid'));
-
-        if(!isset($teamPlayer))
-            return view('pages.error', ['message' => "No teamplayer with id: " . $request->input('teamplayerid')]);
-
-        $id = $teamPlayer->team_id;
-
-        $teamPlayer->delete();
-
-        return redirect()->route('teams.view', ['id' => $id])->with('info', '"' . $teamPlayer->player->name . '" deleted from team');
-    }
-
-    /* GAME EDIT */
-
-    public function postTeamGameEdit(Request $request) {
-        $this->validate($request, [
-            'games' => 'required|numeric'
-        ]);
-
-        $team = Team::find($request->input('teamid'));
-
-        if(!isset($team))
-            return view('pages.error', ['message' => "No team with id: " . $request->input('teamid')]);
-
-        foreach ($team->teamPlayers as $teamPlayer) {
-            $teamPlayer->games += $request->input('games');
-            $teamPlayer->save();
-        }
-
-        return redirect()->route('teams.view', ['id' => $team->id])->with('info', "Games updated");
-    }
-
-    /* TEAM VIEW */
-
-    public function getTeamsView($id) {
-        $team = Team::find($id);
-
-        if(!isset($team))
-            return view('pages.error', ['message' => "No team with id: " . $id]);
-
-        $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('player_id')->get();
-
-        return view('teams.view', ['team' => $team, 'teamplayers' => $teamplayers]);
     }
 
     /* TEAMPLAYER VIEW */

@@ -53,6 +53,16 @@ Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
         'as' => 'teams.index'
     ]);
 
+    Route::get('view/{id}', [
+        'uses' => 'TeamController@getTeamsView',
+        'as' => 'teams.view'
+    ]);
+
+    Route::post('view/{id}', [
+        'uses' => 'TeamController@postTeamsView',
+        'as' => 'teams.view'
+    ]);
+
     Route::get('add', [
         'uses' => 'TeamController@getTeamsAdd',
         'as' => 'teams.add'
@@ -76,21 +86,6 @@ Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
     Route::get('delete/{id}', [
         'uses' => 'TeamController@getTeamsDelete',
         'as' => 'teams.delete'
-    ]);
-
-    Route::post('playerdelete', [
-        'uses' => 'TeamController@postTeamPlayerDelete',
-        'as' => 'teams.playerdelete'
-    ]);
-
-    Route::post('gameedit', [
-        'uses' => 'TeamController@postTeamGameEdit',
-        'as' => 'teams.gameedit'
-    ]);
-
-    Route::get('view/{id}', [
-        'uses' => 'TeamController@getTeamsView',
-        'as' => 'teams.view'
     ]);
 
     Route::get('playerview/{id}', [

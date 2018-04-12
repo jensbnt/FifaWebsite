@@ -62,10 +62,8 @@
                 <div class="card mb-3">
                     <h3 class="card-header">Add/Remove games</h3>
                     <div class="card-body">
-                        <form action="{{ route('teams.gameedit') }}" method="post">
+                        <form action="{{ route('teams.view', ['id' => $team->id]) }}" method="post">
                             {{ csrf_field() }}
-
-                            <input type="hidden" name="teamid" value="{{ $team->id }}">
 
                             <div class="row form-group">
                                 <div class="col-md-8">
@@ -92,7 +90,7 @@
                 <div class="card mb-3">
                     <h3 class="card-header">Delete player</h3>
                     <div class="card-body">
-                        <form action="{{ route('teams.playerdelete') }}" method="post">
+                        <form action="{{ route('teams.view', ['id' => $team->id]) }}" method="post">
                             {{ csrf_field() }}
 
                             <div class="row form-group">
