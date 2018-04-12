@@ -21,7 +21,11 @@ class PlayerController extends Controller
     }
 
     public function getPlayersView($id) {
-        $player = Player::find($id);
+        $player = Player::leftJoin('team_players', 'players.id', '=', 'team_players.player_id')
+            ->select('players.*', DB::raw("SUM(team_players.games) as games, SUM(team_players.goals) as goals, SUM(team_players.assists) as assists, ROUND((SUM(team_players.goals) + SUM(team_players.assists)) / SUM(team_players.games), 3) as ctr"))
+            ->groupBy('players.id')
+            ->where('players.id', '=', $id)
+            ->first();
 
         if(!isset($player))
             return view('pages.error', ['message' => "No player with id: " . $id]);
@@ -75,10 +79,10 @@ class PlayerController extends Controller
 
     public function getPlayersTop(Request $request) {
         $this->validate($request, [
-            'sort' => 'numeric|min:0|max:4'
+            'sort' => 'numeric|min:1|max:4'
         ]);
 
-        if(!$request->has('sort') || $request->input('sort') == "0"|| $request->input('sort') == "1") {
+        if(!$request->has('sort') || $request->input('sort') == "1") {
             $players = Player::join('team_players', 'players.id', '=', 'team_players.player_id')
                 ->select('players.*', DB::raw("SUM(team_players.games) as games, SUM(team_players.goals) as goals, SUM(team_players.assists) as assists, ROUND((SUM(team_players.goals) + SUM(team_players.assists)) / SUM(team_players.games), 3) as ctr"))
                 ->groupBy('players.id')

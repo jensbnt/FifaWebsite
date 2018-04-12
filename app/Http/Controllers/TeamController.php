@@ -6,6 +6,7 @@ use App\Player;
 use App\Team;
 use App\TeamPlayer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class TeamController extends Controller
 {
@@ -20,7 +21,7 @@ class TeamController extends Controller
 
     public function getTeamsView($id, Request $request) {
         $this->validate($request, [
-            'sort' => 'numeric|min:0|max:3'
+            'sort' => 'numeric|min:1|max:4'
         ]);
 
         $team = Team::find($id);
@@ -28,17 +29,33 @@ class TeamController extends Controller
         if(!isset($team))
             return view('pages.error', ['message' => "No team with id: " . $id]);
 
-        if(!$request->has('sort') || $request->input('sort') == "0") {
-            $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('player_id')->get();
-        } else if ($request->input('sort') == "1") {
-            $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('games', 'desc')->orderBy('player_id')->get();
+        if(!$request->has('sort') || $request->input('sort') == "1") {
+            $players = TeamPlayer::join('players', 'team_players.player_id', '=', 'players.id')
+                ->select('players.*', 'team_players.id as team_player_id', 'team_players.games', 'team_players.goals', 'team_players.assists', DB::raw("ROUND((team_players.goals + team_players.assists) / team_players.games, 3) as ctr"))
+                ->where('team_id', '=', $id)
+                ->orderBy('games', 'desc')
+                ->get();
         } else if ($request->input('sort') == "2") {
-            $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('goals', 'desc')->orderBy('player_id')->get();
+            $players = TeamPlayer::join('players', 'team_players.player_id', '=', 'players.id')
+                ->select('players.*', 'team_players.id as team_player_id', 'team_players.games', 'team_players.goals', 'team_players.assists', DB::raw("ROUND((team_players.goals + team_players.assists) / team_players.games, 3) as ctr"))
+                ->where('team_id', '=', $id)
+                ->orderBy('goals', 'desc')
+                ->get();
         } else if ($request->input('sort') == "3") {
-            $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('assists', 'desc')->orderBy('player_id')->get();
+            $players = TeamPlayer::join('players', 'team_players.player_id', '=', 'players.id')
+                ->select('players.*', 'team_players.id as team_player_id', 'team_players.games', 'team_players.goals', 'team_players.assists', DB::raw("ROUND((team_players.goals + team_players.assists) / team_players.games, 3) as ctr"))
+                ->where('team_id', '=', $id)
+                ->orderBy('assists', 'desc')
+                ->get();
+        } else if ($request->input('sort') == "4") {
+            $players = TeamPlayer::join('players', 'team_players.player_id', '=', 'players.id')
+                ->select('players.*', 'team_players.id as team_player_id', 'team_players.games', 'team_players.goals', 'team_players.assists', DB::raw("ROUND((team_players.goals + team_players.assists) / team_players.games, 3) as ctr"))
+                ->where('team_id', '=', $id)
+                ->orderBy('ctr', 'desc')
+                ->get();
         }
 
-        return view('teams.view', ['team' => $team, 'teamplayers' => $teamplayers]);
+        return view('teams.view', ['team' => $team, 'players' => $players, 'sort' => $request->input('sort')]);
     }
 
     public function postTeamsView($id, Request $request) {

@@ -25,10 +25,10 @@
                     <div class="row form-group">
                         <div class="col-md-11">
                             <select id="sort" class="form-control" name="sort">
-                                <option value="0" selected></option>
-                                <option value="1">Games</option>
-                                <option value="2">Goals</option>
-                                <option value="3">Assists</option>
+                                <option value="1" {{ (!isset($sort) || $sort == "1" ? "selected" : "") }}>Games</option>
+                                <option value="2" {{ (isset($sort) && $sort == "2" ? "selected" : "") }}>Goals</option>
+                                <option value="3" {{ (isset($sort) && $sort == "3" ? "selected" : "") }}>Assists</option>
+                                <option value="4" {{ (isset($sort) && $sort == "4" ? "selected" : "") }}>Contributions</option>
                             </select>
 
                             @if ($errors->has('sort'))
@@ -52,33 +52,33 @@
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col">Name</th>
-                        <th scope="col">Rating</th>
-                        <th scope="col">Position</th>
-                        <th scope="col">Type</th>
-                        <th scope="col">Games</th>
-                        <th scope="col">G</th>
-                        <th scope="col">A</th>
-                        <th scope="col">C</th>
+                        <th scope="col" style="width: 25%">Name</th>
+                        <th scope="col" style="width: 10%">Rating</th>
+                        <th scope="col" style="width: 10%">Position</th>
+                        <th scope="col" style="width: 15%">Type</th>
+                        <th scope="col" style="width: 10%">Gm</th>
+                        <th scope="col" style="width: 10%">Gl</th>
+                        <th scope="col" style="width: 10%">A</th>
+                        <th scope="col" style="width: 10%">C</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($teamplayers as $teamplayer)
+                    @foreach($players as $player)
                         <tr>
-                            <td><a href="{{ route('teams.playerview', ['id' => $teamplayer->id]) }}">{{ $teamplayer->player->name }}</a></td>
-                            <td>{{ $teamplayer->player->rating }}</td>
-                            <td>{{ $teamplayer->player->position }}</td>
-                            <td>{{ $teamplayer->player->cardtype }}</td>
-                            <td>{{ $teamplayer->games }}</td>
-                            <td>{{ $teamplayer->goals }}</td>
-                            <td>{{ $teamplayer->assists }}</td>
+                            <td><a href="{{ route('teams.playerview', ['id' => $player->team_player_id]) }}">{{ $player->name }}</a></td>
+                            <td>{{ $player->rating }}</td>
+                            <td>{{ $player->position }}</td>
+                            <td>{{ $player->cardtype }}</td>
+                            <td>{{ $player->games }}</td>
+                            <td>{{ $player->goals }}</td>
+                            <td>{{ $player->assists }}</td>
                             <td>
-                                @if($teamplayer->contributions() < 0.5)
-                                    <span style="color: #ff0000;">{{ $teamplayer->contributions() }}</span>
-                                @elseif($teamplayer->contributions() < 1)
-                                    <span style="color: #ffa500;">{{ $teamplayer->contributions() }}</span>
+                                @if($player->ctr < 0.5)
+                                    <span style="color: #ff0000;">{{ $player->ctr }}</span>
+                                @elseif($player->ctr < 1)
+                                    <span style="color: #ffa500;">{{ $player->ctr }}</span>
                                 @else
-                                    <span style="color: #2ca02c;">{{ $teamplayer->contributions() }}</span>
+                                    <span style="color: #2ca02c;">{{ $player->ctr }}</span>
                                 @endif
                             </td>
                         </tr>
@@ -127,8 +127,8 @@
                                 <div class="col-md-8">
                                     <select id="teamplayerid" class="form-control" name="teamplayerid">
                                         <option selected></option>
-                                        @foreach($teamplayers as $teamplayer)
-                                            <option value="{{ $teamplayer->id }}">{{ $teamplayer->player->id }} - {{ $teamplayer->player->name }}</option>
+                                        @foreach($players as $player)
+                                            <option value="{{ $player->team_player_id }}">{{ $player->name }}</option>
                                         @endforeach
                                     </select>
 
