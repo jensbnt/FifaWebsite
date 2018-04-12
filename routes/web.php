@@ -45,6 +45,11 @@ Route::group(['prefix' => 'players', 'middleware' => 'auth'], function () {
         'uses' => 'PlayerController@getPlayersDelete',
         'as' => 'players.delete'
     ]);
+
+    Route::get('top', [
+        'uses' => 'PlayerController@getPlayersTop',
+        'as' => 'players.top'
+    ]);
 });
 
 Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {

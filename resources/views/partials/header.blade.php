@@ -24,6 +24,8 @@
                         <a class="dropdown-item" href="{{ route('teams.add') }}">Add team</a>
                     </div>
                 </li>
+
+                <li class="nav-item"><a class="nav-link" href="{{ route('players.top') }}">Top players</a></li>
             @endif
         </ul>
         <ul class="nav navbar-nav ml-auto">

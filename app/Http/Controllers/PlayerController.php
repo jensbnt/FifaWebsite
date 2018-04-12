@@ -6,6 +6,7 @@ use App\Player;
 use App\Team;
 use App\TeamPlayer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class PlayerController extends Controller
 {
@@ -70,5 +71,43 @@ class PlayerController extends Controller
         $player->delete();
 
         return redirect()->route('players.index')->with('info', 'Player deleted: "' . $player->name . '"');
+    }
+
+    public function getPlayersTop(Request $request) {
+        $this->validate($request, [
+            'sort' => 'numeric|min:0|max:4'
+        ]);
+
+        if(!$request->has('sort') || $request->input('sort') == "0"|| $request->input('sort') == "1") {
+            $players = Player::join('team_players', 'players.id', '=', 'team_players.player_id')
+                ->select('players.*', DB::raw("SUM(team_players.games) as games, SUM(team_players.goals) as goals, SUM(team_players.assists) as assists, ROUND((SUM(team_players.goals) + SUM(team_players.assists)) / SUM(team_players.games), 3) as ctr"))
+                ->groupBy('players.id')
+                ->where('games', '>', 0)
+                ->orderBy('games', 'desc')
+                ->get();
+        } else if ($request->input('sort') == "2") {
+            $players = Player::join('team_players', 'players.id', '=', 'team_players.player_id')
+                ->select('players.*', DB::raw("SUM(team_players.games) as games, SUM(team_players.goals) as goals, SUM(team_players.assists) as assists, ROUND((SUM(team_players.goals) + SUM(team_players.assists)) / SUM(team_players.games), 3) as ctr"))
+                ->groupBy('players.id')
+                ->where('goals', '>', 0)
+                ->orderBy('goals', 'desc')
+                ->get();
+        } else if ($request->input('sort') == "3") {
+            $players = Player::join('team_players', 'players.id', '=', 'team_players.player_id')
+                ->select('players.*', DB::raw("SUM(team_players.games) as games, SUM(team_players.goals) as goals, SUM(team_players.assists) as assists, ROUND((SUM(team_players.goals) + SUM(team_players.assists)) / SUM(team_players.games), 3) as ctr"))
+                ->groupBy('players.id')
+                ->where('assists', '>', 0)
+                ->orderBy('assists', 'desc')
+                ->get();
+        } else if ($request->input('sort') == "4") {
+            $players = Player::join('team_players', 'players.id', '=', 'team_players.player_id')
+                ->select('players.*', DB::raw("SUM(team_players.games) as games, SUM(team_players.goals) as goals, SUM(team_players.assists) as assists, ROUND((SUM(team_players.goals) + SUM(team_players.assists)) / SUM(team_players.games), 3) as ctr"))
+                ->groupBy('players.id')
+                ->where('games', '>', 0)
+                ->orderBy('ctr', 'desc')
+                ->get();
+        }
+
+        return view('players.top', ['players' => $players, 'sort' => $request->input('sort')]);
     }
 }
