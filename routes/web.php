@@ -83,6 +83,11 @@ Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
         'as' => 'teams.playerdelete'
     ]);
 
+    Route::post('gameedit', [
+        'uses' => 'TeamController@postTeamGameEdit',
+        'as' => 'teams.gameedit'
+    ]);
+
     Route::get('view/{id}', [
         'uses' => 'TeamController@getTeamsView',
         'as' => 'teams.view'

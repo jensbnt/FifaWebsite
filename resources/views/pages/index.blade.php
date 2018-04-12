@@ -28,9 +28,7 @@
             <div class="row">
                 <div class="col-md">
                     <h1>To Do</h1>
-                    <p>Graphics</p>
-                    <p>Delete -> remove bla bla</p>
-                    <p>+- Game</p>
+                    <p>Nations and club db</p>
                     <p>Player sort</p>
                     <p>User binded teams & teamplayers</p>
                     <p>Admin sections & accounts</p>

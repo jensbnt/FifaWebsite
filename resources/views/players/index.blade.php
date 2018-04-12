@@ -39,7 +39,9 @@
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col" style="width: 10%">ID</th>
-                        <th scope="col" style="width: 55%">Name</th>
+                        <th scope="col" style="width: 5%"></th>
+                        <th scope="col" style="width: 5%"></th>
+                        <th scope="col" style="width: 45%">Name</th>
                         <th scope="col" style="width: 10%">Rating</th>
                         <th scope="col" style="width: 10%">Position</th>
                         <th scope="col" style="width: 15%">Cardtype</th>
@@ -49,6 +51,8 @@
                     @foreach($players as $player)
                         <tr>
                             <th scope="row">{{ $player->id }}</th>
+                            <td><img style="width: 30px;" src="{{ $player->nation_img_link }}" alt="Card image cap"></td>
+                            <td><img style="width: 30px;" src="{{ $player->club_img_link }}" alt="Card image cap"></td>
                             <td><a href="{{ route('players.view', ['id' => $player->id]) }}">{{ $player->name }}</a></td>
                             <td>{{ $player->rating }}</td>
                             <td>{{ $player->position }}</td>

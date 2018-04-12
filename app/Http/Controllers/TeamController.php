@@ -131,6 +131,26 @@ class TeamController extends Controller
         return redirect()->route('teams.view', ['id' => $id])->with('info', '"' . $teamPlayer->player->name . '" deleted from team');
     }
 
+    /* GAME EDIT */
+
+    public function postTeamGameEdit(Request $request) {
+        $this->validate($request, [
+            'games' => 'required|numeric'
+        ]);
+
+        $team = Team::find($request->input('teamid'));
+
+        if(!isset($team))
+            return view('pages.error', ['message' => "No team with id: " . $request->input('teamid')]);
+
+        foreach ($team->teamPlayers as $teamPlayer) {
+            $teamPlayer->games += $request->input('games');
+            $teamPlayer->save();
+        }
+
+        return redirect()->route('teams.view', ['id' => $team->id])->with('info', "Games updated");
+    }
+
     /* TEAM VIEW */
 
     public function getTeamsView($id) {

@@ -60,9 +60,31 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card mb-3">
-                    <h3 class="card-header">Manage stats</h3>
+                    <h3 class="card-header">Add/Remove games</h3>
                     <div class="card-body">
+                        <form action="{{ route('teams.gameedit') }}" method="post">
+                            {{ csrf_field() }}
 
+                            <input type="hidden" name="teamid" value="{{ $team->id }}">
+
+                            <div class="row form-group">
+                                <div class="col-md-8">
+                                    <input id="games" type="number" class="form-control" name="games" value="{{ old('games') == "" ? 0 : old('games') }}">
+
+                                    @if ($errors->has('games'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('games') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <div class="col-md-1">
+                                    <button type="submit" class="btn btn-dark">
+                                        Edit games
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>

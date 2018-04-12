@@ -40,12 +40,12 @@
                         <img class="card-img-top" src="{{ $player->player_img_link }}" alt="Card image cap">
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-6">
-                        <img class="card-img-top" src="{{ $player->club_img_link }}" alt="Card image cap">
-                    </div>
+                <div class="row align-items-center">
                     <div class="col-md-6">
                         <img class="card-img-top" src="{{ $player->nation_img_link }}" alt="Card image cap">
+                    </div>
+                    <div class="col-md-6">
+                        <img class="card-img-top" src="{{ $player->club_img_link }}" alt="Card image cap">
                     </div>
                 </div>
             </div>
