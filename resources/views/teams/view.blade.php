@@ -19,6 +19,36 @@
         </div>
         <div class="row">
             <div class="col-md">
+                <form action="{{ route('teams.view', ['id' => $team->id]) }}" method="get">
+                    {{ csrf_field() }}
+
+                    <div class="row form-group">
+                        <div class="col-md-11">
+                            <select id="sort" class="form-control" name="sort">
+                                <option value="0" selected></option>
+                                <option value="1">Games</option>
+                                <option value="2">Goals</option>
+                                <option value="3">Assists</option>
+                            </select>
+
+                            @if ($errors->has('sort'))
+                                <span class="help-block">
+                                    <strong>{{ $errors->first('sort') }}</strong>
+                                </span>
+                            @endif
+                        </div>
+
+                        <div class="col-md-1">
+                            <button type="submit" class="btn btn-dark">
+                                Sort
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
                     <tr>

@@ -27,6 +27,7 @@
                 <div class="col-md-6">
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Recent Updates</h1></li>
+                        <li class="list-group-item"><b>v1.7</b> - Added player sorting on team page</li>
                         <li class="list-group-item"><b>v1.6</b> - Added player graphics (picture, club and nation)</li>
                         <li class="list-group-item"><b>v1.5</b> - Global player stats</li>
                         <li class="list-group-item"><b>v1.4</b> - Edit player's games, goals and assists</li>
@@ -40,8 +41,9 @@
                 <div class="col-md-6">
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Future Updates</h1></li>
+                        <li class="list-group-item">Edit player</li>
+                        <li class="list-group-item">Top scores</li>
                         <li class="list-group-item">Nations and club database</li>
-                        <li class="list-group-item">Player sort</li>
                         <li class="list-group-item">User owned teams and team players</li>
                         <li class="list-group-item">Admin sections and accounts</li>
                         <li class="list-group-item">Trading manager</li>

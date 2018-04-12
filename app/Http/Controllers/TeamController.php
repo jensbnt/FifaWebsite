@@ -18,13 +18,25 @@ class TeamController extends Controller
 
     /* TEAM VIEW */
 
-    public function getTeamsView($id) {
+    public function getTeamsView($id, Request $request) {
+        $this->validate($request, [
+            'sort' => 'numeric|min:0|max:3'
+        ]);
+
         $team = Team::find($id);
 
         if(!isset($team))
             return view('pages.error', ['message' => "No team with id: " . $id]);
 
-        $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('player_id')->get();
+        if(!$request->has('sort') || $request->input('sort') == "0") {
+            $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('player_id')->get();
+        } else if ($request->input('sort') == "1") {
+            $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('games', 'desc')->orderBy('player_id')->get();
+        } else if ($request->input('sort') == "2") {
+            $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('goals', 'desc')->orderBy('player_id')->get();
+        } else if ($request->input('sort') == "3") {
+            $teamplayers = TeamPlayer::where('team_id', $id)->orderBy('assists', 'desc')->orderBy('player_id')->get();
+        }
 
         return view('teams.view', ['team' => $team, 'teamplayers' => $teamplayers]);
     }
