@@ -20,7 +20,10 @@ class PlayerTableSeeder extends Seeder
                     'name' => $data[0],
                     'rating' => $data[1],
                     'position' => $data[2],
-                    'cardtype' => $data[3]
+                    'cardtype' => $data[3],
+                    'club_img_link' => $data[4],
+                    'nation_img_link' => $data[5],
+                    'player_img_link' => $data[6],
                 ]);
                 $player->save();
             }
