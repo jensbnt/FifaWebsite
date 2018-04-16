@@ -57,6 +57,6 @@ class Handler extends ExceptionHandler
     {
         return $request->expectsJson()
             ? response()->json(['message' => $exception->getMessage()], 401)
-            : redirect()->route('auth.signin')->with('fail', 'Please log in!');;
+            : redirect()->route('auth.signin')->with('fail', 'Please log in!');
     }
 }

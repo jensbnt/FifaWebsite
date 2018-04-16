@@ -102,6 +102,16 @@ Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
         'uses' => 'TeamController@postTeamsPlayerView',
         'as' => 'teams.playerview'
     ]);
+
+    Route::get('addgame/{id}', [
+        'uses' => 'TeamController@getTeamsAddGame',
+        'as' => 'teams.addgame'
+    ]);
+
+    Route::post('addgame/{id}', [
+        'uses' => 'TeamController@postTeamsAddGame',
+        'as' => 'teams.addgame'
+    ]);
 });
 
 Auth::routes();

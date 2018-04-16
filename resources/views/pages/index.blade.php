@@ -27,6 +27,7 @@
                 <div class="col-md-6">
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Recent Updates</h1></li>
+                        <li class="list-group-item"><b>v1.9</b> - Add game option</li>
                         <li class="list-group-item"><b>v1.8</b> - Added top players</li>
                         <li class="list-group-item"><b>v1.7</b> - Added player sorting on team page</li>
                         <li class="list-group-item"><b>v1.6</b> - Added player graphics (picture, club and nation)</li>

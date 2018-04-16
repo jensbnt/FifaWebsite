@@ -114,6 +114,9 @@
                             </div>
                         </form>
                     </div>
+                    <div class="card-footer">
+                        <a href="{{ route('teams.addgame', ['id' => $team->id]) }}">New Game</a>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">

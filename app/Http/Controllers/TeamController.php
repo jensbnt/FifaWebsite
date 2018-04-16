@@ -231,4 +231,42 @@ class TeamController extends Controller
 
         return redirect()->route('teams.view', ['id' => $teamplayer->team_id])->with('info', $teamplayer->player->name . "'s stats edited");
     }
+
+    /* ADD GAME */
+
+    public function getTeamsAddGame($id) {
+        $team = Team::find($id);
+
+        if(!isset($team))
+            return view('pages.error', ['message' => "No team with id: " . $id]);
+
+        return view('teams.addgame', ['team' => $team]);
+    }
+
+    public function postTeamsAddGame($id, Request $request) {
+        $team = Team::find($id);
+
+        if(!isset($team))
+            return view('pages.error', ['message' => "No team with id: " . $id]);
+        foreach ($team->teamPlayers as $teamPlayer) {
+            $save = false;
+
+            if($request->input($teamPlayer->id)['goals'] != null) {
+                $teamPlayer->goals += $request->input($teamPlayer->id)['goals'];
+                $save = true;
+            }
+
+            if($request->input($teamPlayer->id)['assists'] != null) {
+                $teamPlayer->assists += $request->input($teamPlayer->id)['assists'];
+                $save = true;
+            }
+
+            if($save) {
+                $teamPlayer->games += 1;
+                $teamPlayer->save();
+            }
+        }
+
+        return redirect()->route('teams.view', ['id' => $id]);
+    }
 }
