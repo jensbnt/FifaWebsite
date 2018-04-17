@@ -9,8 +9,11 @@
         </div>
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h1>Add team</h1>
                 <div class="card">
+                    <div class="card-header">
+                        <h1>Add team</h1>
+                        <p>This page lets you create your own teams and add players to it. You can edit this team later. All fields are required.</p>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('teams.add') }}">
                             {{ csrf_field() }}

@@ -9,8 +9,11 @@
         </div>
         <div class="row">
             <div class="col-md">
-                <h1>Add game</h1>
-                <div class="card">
+                <div class="card mb-3">
+                    <div class="card-header">
+                        <h1>Add game - {{ $team->name }}</h1>
+                        <p>Right now you are adding a new game to the selected team. Players with <b>at least 1 stat</b> filled in will receive a new game in their stats. Players with <b>both</b> empty fields don't play in this game.</p>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('teams.addgame', ['id' => $team->id]) }}">
                             {{ csrf_field() }}

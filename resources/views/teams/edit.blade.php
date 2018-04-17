@@ -9,8 +9,11 @@
         </div>
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h1>Add team</h1>
                 <div class="card">
+                    <div class="card-header">
+                        <h1>Edit team</h1>
+                        <p>Here you can edit or remove this team. Removing it will also remove all this teams's players. All fields are required.</p>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('teams.edit', ['id' => $team->id]) }}">
                             {{ csrf_field() }}

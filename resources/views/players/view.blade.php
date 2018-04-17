@@ -30,10 +30,11 @@
                         </p>
                     </div>
                     <div class="card-footer text-muted">
-                        @if($player->seeded != 1)
-                            <a href="{{ route('players.edit', ['id' => $player->id]) }}">Edit player</a> -
+                        @if($player->seeded)
+                            <span class="text-muted">Seeded player</span>
+                        @else
+                            <a href="{{ route('players.edit', ['id' => $player->id]) }}">Edit - Delete</a>
                         @endif
-                        <a href="" data-toggle="modal" data-target="#confirm-delete">Delete player</a>
                     </div>
                 </div>
             </div>
@@ -98,24 +99,6 @@
                             </div>
                         </form>
                     </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- CONFIRMATION DIALOG -->
-    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h2>Warning!</h2>
-                </div>
-                <div class="modal-body">
-                    Do you really want to delete {{ $player->name }}?
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="{{ route('players.delete', ['id' => $player->id]) }}" class="btn btn-danger btn-ok">Delete</a>
                 </div>
             </div>
         </div>

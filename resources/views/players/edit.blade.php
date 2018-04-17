@@ -9,8 +9,11 @@
         </div>
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h1>Update player</h1>
                 <div class="card">
+                    <div class="card-header">
+                        <h1>Edit player</h1>
+                        <p>Here you can edit or remove this player. Removing it will also remove all stats in any team. All fields are required.</p>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('players.edit', ['id' => $player->id]) }}">
                             {{ csrf_field() }}
@@ -24,8 +27,8 @@
 
                                         @if ($errors->has('name'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('name') }}</strong>
-                                        </span>
+                                                <strong>{{ $errors->first('name') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -38,8 +41,8 @@
 
                                         @if ($errors->has('rating'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('rating') }}</strong>
-                                        </span>
+                                                <strong>{{ $errors->first('rating') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -57,8 +60,8 @@
 
                                         @if ($errors->has('position'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('position') }}</strong>
-                                        </span>
+                                                <strong>{{ $errors->first('position') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -76,8 +79,8 @@
 
                                         @if ($errors->has('cardtype'))
                                             <span class="help-block">
-                                            <strong>{{ $errors->first('cardtype') }}</strong>
-                                        </span>
+                                                <strong>{{ $errors->first('cardtype') }}</strong>
+                                            </span>
                                         @endif
                                     </div>
                                 </div>
@@ -125,17 +128,38 @@
                                 </div>
 
                                 <div class="row form-group">
-                                    <div class="col-md offset-md-3">
+                                    <div class="col-md-3 offset-md-3">
                                         <button type="submit" class="btn btn-dark">
                                             Update player
                                         </button>
                                     </div>
+                                    <div class="col-md-2">
+                                        <a class="btn btn-danger" href="" data-toggle="modal" data-target="#confirm-delete">Delete</a>
+                                    </div>
                                 </div>
                             @else
-                                <p>You can't edit this player</p>
+                                You can't edit this player
                             @endif
                         </form>
                     </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONFIRMATION DIALOG -->
+    <div class="modal fade" id="confirm-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>Warning!</h2>
+                </div>
+                <div class="modal-body">
+                    Do you really want to delete {{ $player->name }}?
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                    <a href="{{ route('players.delete', ['id' => $player->id]) }}" class="btn btn-danger btn-ok">Delete</a>
                 </div>
             </div>
         </div>

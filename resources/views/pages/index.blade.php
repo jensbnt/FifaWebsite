@@ -45,6 +45,7 @@
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Future Updates</h1></li>
                         <li class="list-group-item">Nations and club database</li>
+                        <li class="list-group-item">Simpeler player add</li>
                         <li class="list-group-item">User owned teams and team players</li>
                         <li class="list-group-item">Admin sections and accounts</li>
                         <li class="list-group-item">Trading manager</li>

@@ -9,8 +9,11 @@
         </div>
         <div class="row">
             <div class="col-md-8 offset-md-2">
-                <h1>Add player</h1>
                 <div class="card">
+                    <div class="card-header">
+                        <h1>Add player</h1>
+                        <p>Add a player to the database. You can edit this player and it's pictures later. All fields are required.</p>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('players.add') }}">
                             {{ csrf_field() }}
