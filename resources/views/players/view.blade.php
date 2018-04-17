@@ -63,7 +63,7 @@
         </div>
         <div class="row">
             <div class="col-md">
-                <div class="card">
+                <div class="card mb-3">
                     <div class="card-header">
                         <h3>Add to team</h3>
                     </div>
