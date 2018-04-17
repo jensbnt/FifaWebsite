@@ -12,24 +12,24 @@ class TeamPlayerTableSeeder extends Seeder
     public function run()
     {
         /* Barcelona Default */
-        for($i = 1; $i < 12; $i++) {
+        for($i = 0; $i < 20; $i++) {
             $teamplayer = new App\TeamPlayer([
-                'player_id' => $i * 100,
+                'player_id' => rand($i * 10 + 1, $i * 10 + 10),
                 'team_id' => 1,
                 'games' => rand(30, 40),
-                'goals' => rand(1, 20),
+                'goals' => rand(5, 20),
                 'assists' => rand(1, 20)
             ]);
             $teamplayer->save();
         }
 
         /* Real Madrid Default */
-        for($i = 12; $i < 23; $i++) {
+        for($i = 20; $i < 40; $i++) {
             $teamplayer = new App\TeamPlayer([
-                'player_id' => $i * 100,
+                'player_id' => rand($i * 10 + 1, $i * 10 + 10),
                 'team_id' => 2,
                 'games' => rand(30, 40),
-                'goals' => rand(1, 20),
+                'goals' => rand(5, 20),
                 'assists' => rand(1, 20)
             ]);
             $teamplayer->save();
