@@ -30,6 +30,9 @@
                         </p>
                     </div>
                     <div class="card-footer text-muted">
+                        @if($player->seeded != 1)
+                            <a href="{{ route('players.edit', ['id' => $player->id]) }}">Edit player</a> -
+                        @endif
                         <a href="" data-toggle="modal" data-target="#confirm-delete">Delete player</a>
                     </div>
                 </div>

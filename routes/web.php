@@ -41,6 +41,16 @@ Route::group(['prefix' => 'players', 'middleware' => 'auth'], function () {
         'as' => 'players.add'
     ]);
 
+    Route::get('edit/{id}', [
+        'uses' => 'PlayerController@getPlayersEdit',
+        'as' => 'players.edit'
+    ]);
+
+    Route::post('edit/{id}', [
+        'uses' => 'PlayerController@postPlayersEdit',
+        'as' => 'players.edit'
+    ]);
+
     Route::get('delete/{id}', [
         'uses' => 'PlayerController@getPlayersDelete',
         'as' => 'players.delete'

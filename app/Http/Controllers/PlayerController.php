@@ -62,6 +62,47 @@ class PlayerController extends Controller
         return redirect()->route('players.index')->with('info', 'Player added: "' . $player->name . '"');
     }
 
+    public function getPlayersEdit($id) {
+        $player = Player::find($id);
+
+        if(!isset($player))
+            return view('pages.error', ['message' => "No player with id: " . $id]);
+
+        $positions = Player::select('position')->groupBy('position')->get();
+        $cardtypes = Player::select('cardtype')->groupBy('cardtype')->get();
+
+        return view('players.edit', ['player' => $player, 'positions' => $positions, 'cardtypes' => $cardtypes]);
+    }
+
+    public function postPlayersEdit($id, Request $request) {
+        $player = Player::find($id);
+
+        if(!isset($player))
+            return view('pages.error', ['message' => "No player with id: " . $id]);
+
+        $this->validate($request, [
+            'name' => 'required|min:2',
+            'rating' => 'required|numeric|min:0|max:99',
+            'position' => 'required',
+            'cardtype' => 'required',
+            'player_img_link' => 'required',
+            'nation_img_link' => 'required',
+            'club_img_link' => 'required'
+        ]);
+
+
+        $player->name =  $request->input('name');
+        $player->rating =  $request->input('rating');
+        $player->position = $request->input('position');
+        $player->cardtype = $request->input('cardtype');
+        $player->player_img_link = $request->input('player_img_link');
+        $player->nation_img_link = $request->input('nation_img_link');
+        $player->club_img_link = $request->input('club_img_link');
+        $player->save();
+
+        return redirect()->route('players.view', ['id' => $player->id])->with('info', 'Player updated: "' . $player->name . '"');
+    }
+
     public function getPlayersDelete($id) {
         $player = Player::find($id);
 
