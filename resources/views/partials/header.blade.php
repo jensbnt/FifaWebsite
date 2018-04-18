@@ -12,6 +12,7 @@
                     </a>
                     <div class="dropdown-menu">
                         <a class="dropdown-item" href="{{ route('players.add') }}">Add player</a>
+                        <a class="dropdown-item" href="{{ route('players.addfile') }}">Add players (.csv)</a>
                     </div>
                 </li>
 

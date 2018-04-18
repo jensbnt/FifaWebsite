@@ -43,10 +43,10 @@
                     <thead class="thead-dark">
                     <tr>
                         <th scope="col" style="width: 10%">#</th>
-                        <th scope="col" style="width: 40%">Name</th>
+                        <th scope="col" style="width: 35%">Name</th>
                         <th scope="col" style="width: 5%">Rating</th>
                         <th scope="col" style="width: 10%">Position</th>
-                        <th scope="col" style="width: 10%">Type</th>
+                        <th scope="col" style="width: 15%">Type</th>
                         <th scope="col" style="width: 5%">Games</th>
                         <th scope="col" style="width: 5%">Goals</th>
                         <th scope="col" style="width: 5%">Assists</th>

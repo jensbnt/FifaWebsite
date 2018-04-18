@@ -66,6 +66,63 @@ class PlayerController extends Controller
         return redirect()->route('players.index')->with('info', 'Player added: "' . $player->name . '"');
     }
 
+    public function getPlayersAddFile() {
+        return view('players.addfile');
+    }
+
+    public function postPlayersAddFile(Request $request) {
+        $this->validate($request, [
+            'file' => 'required'
+        ]);
+
+        $file = $request->file('file');
+
+        if(!$file->isValid())
+            return view('pages.error', ['message' => "File error"]);
+
+        $errors = 0;
+        $playercount = 0;
+
+        if (($handle = fopen($file, "r")) !== FALSE) {
+            while (($data = fgetcsv($handle, 1000, ",")) !== false) {
+                if(count($data) != 7) {
+                    $errors++;
+                } elseif(!is_numeric($data[1])) {
+                    $errors++;
+                } elseif(filter_var($data[4], FILTER_VALIDATE_URL) === false) {
+                    $errors++;
+                } elseif(filter_var($data[5], FILTER_VALIDATE_URL) === false) {
+                    $errors++;
+                } elseif(filter_var($data[6], FILTER_VALIDATE_URL) === false) {
+                    $errors++;
+                } elseif(getimagesize($data[4]) === false) {
+                    $errors++;
+                } elseif(getimagesize($data[5]) === false) {
+                    $errors++;
+                } elseif(getimagesize($data[6]) === false) {
+                    $errors++;
+                } else {
+                    $playercount++;
+                    $player = new Player([
+                        'created_at' => date('Y-m-d H:i:s'),
+                        'updated_at' => date('Y-m-d H:i:s'),
+                        'name' => $data[0],
+                        'rating' => $data[1],
+                        'position' => $data[2],
+                        'cardtype' => $data[3],
+                        'club_img_link' => $data[4],
+                        'nation_img_link' => $data[5],
+                        'player_img_link' => $data[6],
+                    ]);
+                    $player->save();
+                }
+            }
+            fclose($handle);
+        }
+
+        return redirect()->route('players.index')->with('info', $playercount . ' players added with ' . $errors . " errors.");
+    }
+
     public function getPlayersEdit($id) {
         $player = Player::find($id);
 

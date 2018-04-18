@@ -41,6 +41,16 @@ Route::group(['prefix' => 'players', 'middleware' => 'auth'], function () {
         'as' => 'players.add'
     ]);
 
+    Route::get('addfile', [
+        'uses' => 'PlayerController@getPlayersAddFile',
+        'as' => 'players.addfile'
+    ]);
+
+    Route::post('addfile', [
+        'uses' => 'PlayerController@postPlayersAddFile',
+        'as' => 'players.addfile'
+    ]);
+
     Route::get('edit/{id}', [
         'uses' => 'PlayerController@getPlayersEdit',
         'as' => 'players.edit'
