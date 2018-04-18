@@ -38,7 +38,7 @@
                     <caption>Players - {{ $count }} results</caption>
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col" style="width: 10%">ID</th>
+                        <th scope="col" style="width: 10%">#</th>
                         <th scope="col" style="width: 5%"></th>
                         <th scope="col" style="width: 5%"></th>
                         <th scope="col" style="width: 45%">Name</th>
@@ -48,17 +48,17 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($players as $player)
+                    @for($i = 0; $i < count($players); $i++)
                         <tr>
-                            <th scope="row">{{ $player->id }}</th>
-                            <td><img style="width: 30px;" src="{{ $player->nation_img_link }}" alt="Card image cap"></td>
-                            <td><img style="width: 30px;" src="{{ $player->club_img_link }}" alt="Card image cap"></td>
-                            <td><a href="{{ route('players.view', ['id' => $player->id]) }}">{{ $player->name }}</a></td>
-                            <td>{{ $player->rating }}</td>
-                            <td>{{ $player->position }}</td>
-                            <td>{{ $player->cardtype }}</td>
+                            <th scope="row">{{ ($players->currentPage() - 1) * $paginate  + $i + 1 }}</th>
+                            <td><img style="width: 30px;" src="{{ $players[$i]->nation_img_link }}" alt="Card image cap"></td>
+                            <td><img style="width: 30px;" src="{{ $players[$i]->club_img_link }}" alt="Card image cap"></td>
+                            <td><a href="{{ route('players.view', ['id' => $players[$i]->id]) }}">{{ $players[$i]->name }}</a></td>
+                            <td>{{ $players[$i]->rating }}</td>
+                            <td>{{ $players[$i]->position }}</td>
+                            <td>{{ $players[$i]->cardtype }}</td>
                         </tr>
-                    @endforeach
+                    @endfor
                     </tbody>
                 </table>
                 {{ $players->links() }}

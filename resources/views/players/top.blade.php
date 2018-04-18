@@ -42,37 +42,39 @@
                 <table class="table table-striped table-hover">
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col" style="width: 25%">Name</th>
-                        <th scope="col" style="width: 10%">Rating</th>
+                        <th scope="col" style="width: 10%">#</th>
+                        <th scope="col" style="width: 40%">Name</th>
+                        <th scope="col" style="width: 5%">Rating</th>
                         <th scope="col" style="width: 10%">Position</th>
-                        <th scope="col" style="width: 15%">Type</th>
-                        <th scope="col" style="width: 10%">Games</th>
-                        <th scope="col" style="width: 10%">Goals</th>
-                        <th scope="col" style="width: 10%">Assists</th>
+                        <th scope="col" style="width: 10%">Type</th>
+                        <th scope="col" style="width: 5%">Games</th>
+                        <th scope="col" style="width: 5%">Goals</th>
+                        <th scope="col" style="width: 5%">Assists</th>
                         <th scope="col" style="width: 10%">Contributions</th>
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach($players as $player)
+                    @for($i = 0; $i < count($players); $i++)
                         <tr>
-                            <td><a href="{{ route('players.view', ['id' => $player->id]) }}">{{ $player->name }}</a></td>
-                            <td>{{ $player->rating }}</td>
-                            <td>{{ $player->position }}</td>
-                            <td>{{ $player->cardtype }}</td>
-                            <td>{{ $player->games }}</td>
-                            <td>{{ $player->goals }}</td>
-                            <td>{{ $player->assists }}</td>
+                            <th scope="row">{{ ($players->currentPage() - 1) * $paginate  + $i + 1 }}</th>
+                            <td><a href="{{ route('players.view', ['id' => $players[$i]->id]) }}">{{ $players[$i]->name }}</a></td>
+                            <td>{{ $players[$i]->rating }}</td>
+                            <td>{{ $players[$i]->position }}</td>
+                            <td>{{ $players[$i]->cardtype }}</td>
+                            <td>{{ $players[$i]->games }}</td>
+                            <td>{{ $players[$i]->goals }}</td>
+                            <td>{{ $players[$i]->assists }}</td>
                             <td>
-                                @if($player->ctr < 0.5)
-                                    <span style="color: #ff0000;">{{ $player->ctr }}</span>
-                                @elseif($player->ctr < 1)
-                                    <span style="color: #ffa500;">{{ $player->ctr }}</span>
+                                @if($players[$i]->ctr < 0.5)
+                                    <span style="color: #ff0000;">{{ $players[$i]->ctr }}</span>
+                                @elseif($players[$i]->ctr < 1)
+                                    <span style="color: #ffa500;">{{ $players[$i]->ctr }}</span>
                                 @else
-                                    <span style="color: #2ca02c;">{{ $player->ctr }}</span>
+                                    <span style="color: #2ca02c;">{{ $players[$i]->ctr }}</span>
                                 @endif
                             </td>
                         </tr>
-                    @endforeach
+                    @endfor
                     </tbody>
                 </table>
                 {{ $players->links() }}
