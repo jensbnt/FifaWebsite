@@ -30,11 +30,14 @@
                         </p>
                     </div>
                     <div class="card-footer text-muted">
-                        @if($player->seeded)
-                            <span class="text-muted">Seeded player</span>
-                        @else
-                            <a href="{{ route('players.edit', ['id' => $player->id]) }}">Edit - Delete</a>
-                        @endif
+                        <span class="text-muted">
+                            @if($player->seeded)
+                                Seeded player
+                            @else
+                                Custom player
+                            @endif
+                        </span> -
+                        <a href="{{ route('players.edit', ['id' => $player->id]) }}">Edit - Delete</a>
                     </div>
                 </div>
             </div>

@@ -22,5 +22,11 @@ class UserTableSeeder extends Seeder
             'password' => bcrypt('pwd')
         ]);
         $user->save();
+
+        $user = new \App\User([
+            'name' => 'root',
+            'password' => bcrypt('root')
+        ]);
+        $user->save();
     }
 }
