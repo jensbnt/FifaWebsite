@@ -29,7 +29,7 @@ class TeamController extends Controller
         if(!isset($team))
             return view('pages.error', ['message' => "No team with id: " . $id]);
 
-        $paginate = 20;
+        $paginate = 15;
 
         if(!$request->has('sort') || $request->input('sort') == "1") {
             $players = TeamPlayer::join('players', 'team_players.player_id', '=', 'players.id')
