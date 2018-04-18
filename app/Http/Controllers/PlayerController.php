@@ -192,6 +192,7 @@ class PlayerController extends Controller
                 ->groupBy('players.id')
                 ->where('games', '>', 0)
                 ->orderBy('games', 'desc')
+                ->orderBy('ctr', 'desc')
                 ->paginate($paginate);
         } else if ($request->input('sort') == "2") {
             $players = Player::join('team_players', 'players.id', '=', 'team_players.player_id')
@@ -199,6 +200,7 @@ class PlayerController extends Controller
                 ->groupBy('players.id')
                 ->where('games', '>', 0)
                 ->orderBy('goals', 'desc')
+                ->orderBy('ctr', 'desc')
                 ->paginate($paginate);
         } else if ($request->input('sort') == "3") {
             $players = Player::join('team_players', 'players.id', '=', 'team_players.player_id')
@@ -206,6 +208,7 @@ class PlayerController extends Controller
                 ->groupBy('players.id')
                 ->where('games', '>', 0)
                 ->orderBy('assists', 'desc')
+                ->orderBy('ctr', 'desc')
                 ->paginate($paginate);
         } else if ($request->input('sort') == "4") {
             $players = Player::join('team_players', 'players.id', '=', 'team_players.player_id')
@@ -213,6 +216,7 @@ class PlayerController extends Controller
                 ->groupBy('players.id')
                 ->where('games', '>', 0)
                 ->orderBy('ctr', 'desc')
+                ->orderBy('games', 'desc')
                 ->paginate($paginate);
         }
 

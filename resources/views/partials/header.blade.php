@@ -27,6 +27,7 @@
                 </li>
 
                 <li class="nav-item"><a class="nav-link" href="{{ route('players.top') }}">Top players</a></li>
+                <li class="nav-item"><a class="nav-link" href="">Backup (soon...)</a></li>
             @endif
         </ul>
         <ul class="nav navbar-nav ml-auto">

@@ -34,24 +34,28 @@ class TeamController extends Controller
                 ->select('players.*', 'team_players.id as team_player_id', 'team_players.games', 'team_players.goals', 'team_players.assists', DB::raw("ROUND((team_players.goals + team_players.assists) / team_players.games, 3) as ctr"))
                 ->where('team_id', '=', $id)
                 ->orderBy('games', 'desc')
+                ->orderBy('ctr', 'desc')
                 ->get();
         } else if ($request->input('sort') == "2") {
             $players = TeamPlayer::join('players', 'team_players.player_id', '=', 'players.id')
                 ->select('players.*', 'team_players.id as team_player_id', 'team_players.games', 'team_players.goals', 'team_players.assists', DB::raw("ROUND((team_players.goals + team_players.assists) / team_players.games, 3) as ctr"))
                 ->where('team_id', '=', $id)
                 ->orderBy('goals', 'desc')
+                ->orderBy('ctr', 'desc')
                 ->get();
         } else if ($request->input('sort') == "3") {
             $players = TeamPlayer::join('players', 'team_players.player_id', '=', 'players.id')
                 ->select('players.*', 'team_players.id as team_player_id', 'team_players.games', 'team_players.goals', 'team_players.assists', DB::raw("ROUND((team_players.goals + team_players.assists) / team_players.games, 3) as ctr"))
                 ->where('team_id', '=', $id)
                 ->orderBy('assists', 'desc')
+                ->orderBy('ctr', 'desc')
                 ->get();
         } else if ($request->input('sort') == "4") {
             $players = TeamPlayer::join('players', 'team_players.player_id', '=', 'players.id')
                 ->select('players.*', 'team_players.id as team_player_id', 'team_players.games', 'team_players.goals', 'team_players.assists', DB::raw("ROUND((team_players.goals + team_players.assists) / team_players.games, 3) as ctr"))
                 ->where('team_id', '=', $id)
                 ->orderBy('ctr', 'desc')
+                ->orderBy('games', 'desc')
                 ->get();
         }
 
