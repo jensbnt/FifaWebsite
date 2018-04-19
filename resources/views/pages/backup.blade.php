@@ -31,7 +31,7 @@
                             <form class="col-md-6" method="POST" action="{{ route('backup.index') }}">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="player-load" value="">
-                                <button type="submit" class="btn btn-success btn-block" disabled>Load</button>
+                                <button type="submit" class="btn btn-success btn-block">Load</button>
                             </form>
                         </div>
                     </div>
@@ -54,7 +54,7 @@
                             <form class="col-md-6" method="POST" action="{{ route('backup.index') }}">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="team-load" value="">
-                                <button type="submit" class="btn btn-success btn-block" disabled>Load</button>
+                                <button type="submit" class="btn btn-success btn-block">Load</button>
                             </form>
                         </div>
                     </div>
