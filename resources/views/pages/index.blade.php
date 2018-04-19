@@ -27,6 +27,7 @@
                 <div class="col-md-6">
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Recent Updates</h1></li>
+                        <li class="list-group-item"><b>v1.12</b> - Backups</li>
                         <li class="list-group-item"><b>v1.11</b> - Add players with .csv</li>
                         <li class="list-group-item"><b>v1.10</b> - Edit players</li>
                         <li class="list-group-item"><b>v1.9</b> - Add game option</li>
@@ -46,7 +47,6 @@
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Future Updates</h1></li>
                         <li class="list-group-item">Secure edit</li>
-                        <li class="list-group-item">Backups</li>
                         <li class="list-group-item">Position and type database</li>
                         <li class="list-group-item">Nations and club database</li>
                         <li class="list-group-item">Advanced sort sort</li>

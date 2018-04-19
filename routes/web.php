@@ -15,6 +15,18 @@ Route::get('/', function () {
     return view('pages.index');
 })->name('pages.index');
 
+Route::group(['prefix' => 'backups', 'middleware' => 'auth'], function () {
+    Route::get('', [
+        'uses' => 'BackupController@getBackupIndex',
+        'as' => 'backup.index'
+    ]);
+
+    Route::post('', [
+        'uses' => 'BackupController@postBackupIndex',
+        'as' => 'backup.index'
+    ]);
+});
+
 Route::group(['prefix' => 'players', 'middleware' => 'auth'], function () {
     Route::get('', [
         'uses' => 'PlayerController@getPlayersIndex',
