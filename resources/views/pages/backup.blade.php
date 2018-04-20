@@ -26,7 +26,7 @@
                             <form class="col-md-6" method="POST" action="{{ route('backup.index') }}">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="player-make" value="">
-                                <button type="submit" class="btn btn-primary btn-block">Make</button>
+                                <button type="submit" class="btn btn-primary btn-block" {{ $playersempty ? "disabled" : "" }}>Make</button>
                             </form>
                             <form class="col-md-6" method="POST" action="{{ route('backup.index') }}">
                                 {{ csrf_field() }}
@@ -49,7 +49,7 @@
                             <form class="col-md-6" method="POST" action="{{ route('backup.index') }}">
                                 {{ csrf_field() }}
                                 <input type="hidden" name="team-make" value="">
-                                <button type="submit" class="btn btn-primary btn-block">Make</button>
+                                <button type="submit" class="btn btn-primary btn-block" {{ $teamsempty ? "disabled" : "" }}>Make</button>
                             </form>
                             <form class="col-md-6" method="POST" action="{{ route('backup.index') }}">
                                 {{ csrf_field() }}

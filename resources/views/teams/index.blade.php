@@ -20,7 +20,7 @@
                         <div class="card-body text-center">
                             <h5 class="card-title">{{ $team->name }}</h5>
                             <p>{{ strlen($team->description) > 60 ? substr($team->description, 0, 60) . " ..." : $team->description }}</p>
-                            <a href="{{ route('teams.view', ['id' => $team->id]) }}" class="btn btn-secondary">Visit team</a>
+                            <a href="{{ route('teams.view', ['id' => $team->id]) }}" class="btn btn-primary">Visit team</a>
                         </div>
                     </div>
                 </div>

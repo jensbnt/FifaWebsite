@@ -146,9 +146,9 @@ class PlayerController extends Controller
             'rating' => 'required|numeric|min:0|max:99',
             'position' => 'required',
             'cardtype' => 'required',
-            'player_img_link' => 'required',
-            'nation_img_link' => 'required',
-            'club_img_link' => 'required'
+            'player_img_link' => 'required|active_url',
+            'nation_img_link' => 'required|active_url',
+            'club_img_link' => 'required|active_url'
         ]);
 
 

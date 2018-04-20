@@ -10,7 +10,10 @@ use Illuminate\Http\Request;
 class BackupController extends Controller
 {
     function getBackupIndex() {
-        return view('pages.backup');
+        $playersempty = count(Player::all()) == 0;
+        $teamsempty = count(Team::all()) == 0;
+
+        return view('pages.backup', ['playersempty' => $playersempty, 'teamsempty' => $teamsempty]);
     }
 
     function postBackupIndex(Request $request) {
