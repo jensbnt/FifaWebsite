@@ -85,8 +85,8 @@
                             </div>
 
                             <div class="row form-group">
-                                <div class="col-md offset-md-3">
-                                    <button type="submit" class="btn btn-dark">
+                                <div class="col-md-4 offset-md-3">
+                                    <button type="submit" class="btn btn-dark btn-block">
                                         Add player
                                     </button>
                                 </div>

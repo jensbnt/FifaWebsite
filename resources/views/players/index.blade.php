@@ -13,7 +13,7 @@
                     {{ csrf_field() }}
 
                     <div class="row form-group">
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <input id="name" type="text" class="form-control" name="name" placeholder="name" value="{{ old('name') != "" ? old('name') : $name }}">
 
                             @if ($errors->has('name'))
@@ -23,8 +23,8 @@
                             @endif
                         </div>
 
-                        <div class="col-md-1">
-                            <button type="submit" class="btn btn-dark">
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-dark btn-block">
                                 Filter
                             </button>
                         </div>

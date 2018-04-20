@@ -127,13 +127,13 @@
                             </div>
 
                             <div class="row form-group">
-                                <div class="col-md-3 offset-md-3">
-                                    <button type="submit" class="btn btn-dark">
+                                <div class="col-md-4 offset-md-3">
+                                    <button type="submit" class="btn btn-dark btn-block">
                                         Update player
                                     </button>
                                 </div>
-                                <div class="col-md-2">
-                                    <a class="btn btn-danger" href="" data-toggle="modal" data-target="#confirm-delete">Delete</a>
+                                <div class="col-md-4">
+                                    <a class="btn btn-danger btn-block" href="" data-toggle="modal" data-target="#confirm-delete">Delete</a>
                                 </div>
                             </div>
                         </form>

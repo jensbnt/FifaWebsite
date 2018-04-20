@@ -33,8 +33,8 @@
                             @endforeach
 
                             <div class="row form-group">
-                                <div class="col-md-2 offset-md-3">
-                                    <button type="submit" class="btn btn-dark">
+                                <div class="col-md-4 offset-md-3">
+                                    <button type="submit" class="btn btn-dark btn-block">
                                         Save game
                                     </button>
                                 </div>

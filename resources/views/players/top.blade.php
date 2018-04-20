@@ -13,7 +13,7 @@
                     {{ csrf_field() }}
 
                     <div class="row form-group">
-                        <div class="col-md-11">
+                        <div class="col-md-10">
                             <select id="sort" class="form-control" name="sort">
                                 <option value="1" {{ (!isset($sort) || $sort == "1" ? "selected" : "") }}>Games</option>
                                 <option value="2" {{ (isset($sort) && $sort == "2" ? "selected" : "") }}>Goals</option>
@@ -28,8 +28,8 @@
                             @endif
                         </div>
 
-                        <div class="col-md-1">
-                            <button type="submit" class="btn btn-dark">
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-dark btn-block">
                                 Sort
                             </button>
                         </div>

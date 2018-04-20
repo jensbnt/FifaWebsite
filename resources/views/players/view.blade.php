@@ -94,8 +94,8 @@
                                     @endif
                                 </div>
 
-                                <div class="col-md-1">
-                                    <button type="submit" class="btn btn-dark">
+                                <div class="col-md-2">
+                                    <button type="submit" class="btn btn-dark btn-block">
                                         Add
                                     </button>
                                 </div>
