@@ -38,7 +38,8 @@
                     <caption>Players - {{ $count }} results</caption>
                     <thead class="thead-dark">
                     <tr>
-                        <th scope="col" style="width: 10%">#</th>
+                        <th scope="col" style="width: 5%">#</th>
+                        <th scope="col" style="width: 5%"></th>
                         <th scope="col" style="width: 5%"></th>
                         <th scope="col" style="width: 5%"></th>
                         <th scope="col" style="width: 45%">Name</th>
@@ -51,6 +52,11 @@
                     @for($i = 0; $i < count($players); $i++)
                         <tr>
                             <th scope="row">{{ ($players->currentPage() - 1) * $paginate  + $i + 1 }}</th>
+                            <td>
+                                @if(count($players[$i]->teamPlayers) != 0)
+                                    <span class="badge badge-success">Team</span>
+                                @endif
+                            </td>
                             <td><img style="width: 30px;" src="{{ $players[$i]->nation_img_link }}" alt="Card image cap"></td>
                             <td><img style="width: 30px;" src="{{ $players[$i]->club_img_link }}" alt="Card image cap"></td>
                             <td><a href="{{ route('players.view', ['id' => $players[$i]->id]) }}">{{ $players[$i]->name }}</a></td>
