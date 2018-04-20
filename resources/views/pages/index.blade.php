@@ -49,7 +49,7 @@
                         <li class="list-group-item">Secure edit</li>
                         <li class="list-group-item">Position and type database</li>
                         <li class="list-group-item">Nations and club database</li>
-                        <li class="list-group-item">Advanced sort sort</li>
+                        <li class="list-group-item">Advanced sort</li>
                         <li class="list-group-item">User owned teams and team players</li>
                         <li class="list-group-item">Admin sections and accounts</li>
                         <li class="list-group-item">Trading manager</li>

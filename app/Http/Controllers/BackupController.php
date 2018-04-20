@@ -57,6 +57,7 @@ class BackupController extends Controller
                 'nation_img_link' => $item->nation_img_link,
                 'player_img_link' => $item->player_img_link,
             ]);
+            $player->id = $item->id;
             $player->save();
         }
 
@@ -93,6 +94,7 @@ class BackupController extends Controller
                 'name' => $item->name,
                 'description' => $item->description,
             ]);
+            $team->id = $item->id;
             $team->save();
         }
 
@@ -114,6 +116,7 @@ class BackupController extends Controller
                 'assists' => $item->assists,
                 'games' => $item->games,
             ]);
+            $teamplayer->id = $item->id;
             $teamplayer->save();
         }
 
