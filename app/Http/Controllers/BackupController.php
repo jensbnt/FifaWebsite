@@ -6,7 +6,6 @@ use App\Player;
 use App\Team;
 use App\TeamPlayer;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\URL;
 
 class BackupController extends Controller
 {
@@ -46,6 +45,7 @@ class BackupController extends Controller
         $json = json_decode(file_get_contents($file));
         foreach ($json as $item) {
             $player = new Player([
+                'id' => $item->id,
                 'created_at' => $item->created_at,
                 'updated_at' => $item->updated_at,
                 'seeded' => $item->seeded,
@@ -57,7 +57,6 @@ class BackupController extends Controller
                 'nation_img_link' => $item->nation_img_link,
                 'player_img_link' => $item->player_img_link,
             ]);
-            $player->id = $item->id;
             $player->save();
         }
 
@@ -89,12 +88,14 @@ class BackupController extends Controller
         $json = json_decode(file_get_contents($file));
         foreach ($json as $item) {
             $team = new Team([
+                'id' => $item->id,
                 'created_at' => $item->created_at,
                 'updated_at' => $item->updated_at,
                 'name' => $item->name,
                 'description' => $item->description,
+                'formation' => $item->formation,
+                'club_img_link' => $item->club_img_link,
             ]);
-            $team->id = $item->id;
             $team->save();
         }
 
@@ -108,6 +109,7 @@ class BackupController extends Controller
         $json = json_decode(file_get_contents($file));
         foreach ($json as $item) {
             $teamplayer = new TeamPlayer([
+                'id' => $item->id,
                 'created_at' => $item->created_at,
                 'updated_at' => $item->updated_at,
                 'player_id' => $item->player_id,
@@ -116,7 +118,6 @@ class BackupController extends Controller
                 'assists' => $item->assists,
                 'games' => $item->games,
             ]);
-            $teamplayer->id = $item->id;
             $teamplayer->save();
         }
 

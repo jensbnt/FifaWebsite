@@ -36,11 +36,25 @@
                                 <label for="description" class="col-md-2 offset-md-1 control-label">Description</label>
 
                                 <div class="col-md-8">
-                                    <textarea id="description" type="text" class="form-control" name="description" rows="3" style="resize: none;">{{ old('description') == "" ? $team->description : old('name') }}</textarea>
+                                    <textarea id="description" type="text" class="form-control" name="description" rows="3" style="resize: none;">{{ old('description') == "" ? $team->description : old('description') }}</textarea>
 
                                     @if ($errors->has('description'))
                                         <span class="help-block">
                                             <strong>{{ $errors->first('description') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <label for="formation" class="col-md-2 offset-md-1 control-label">Formation</label>
+
+                                <div class="col-md-8">
+                                    <input id="formation" type="text" class="form-control" name="formation" value="{{ old('formation') == "" ? $team->formation : old('formation') }}">
+
+                                    @if ($errors->has('formation'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('formation') }}</strong>
                                         </span>
                                     @endif
                                 </div>

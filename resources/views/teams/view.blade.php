@@ -10,9 +10,16 @@
         <div class="row">
             <div class="col-md">
                 <div class="card mb-3">
-                    <div class="card-body">
+                    <div class="card-header text-center">
+                        <b>{{ $team->formation }}</b>
+                    </div>
+                    <div class="card-body text-center">
+                        <img class="mt-3" style="width: 20%;" src="{{ $team->club_img_link }}">
                         <h2>{{ $team->name }}</h2>
                         <p>{{ $team->description }}</p>
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="{{ route('teams.edit', ['id' => $team->id]) }}">Edit - Delete</a>
                     </div>
                 </div>
             </div>

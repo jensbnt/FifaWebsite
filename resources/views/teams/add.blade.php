@@ -47,6 +47,20 @@
                             </div>
 
                             <div class="row form-group">
+                                <label for="formation" class="col-md-2 offset-md-1 control-label">Formation</label>
+
+                                <div class="col-md-8">
+                                    <input id="formation" type="text" class="form-control" name="formation" value="{{ old('formation') }}">
+
+                                    @if ($errors->has('formation'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('formation') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
                                 <div class="col-md-4 offset-md-3">
                                     <button type="submit" class="btn btn-dark btn-block">
                                         Add team

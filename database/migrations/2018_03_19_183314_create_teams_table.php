@@ -18,6 +18,8 @@ class CreateTeamsTable extends Migration
             $table->timestamps();
             $table->string('name');
             $table->text('description');
+            $table->string('formation')->default("-");
+            $table->string('club_img_link')->default("http://a.espncdn.com/i/teamlogos/soccer/500/default-team-logo-500.png");
         });
     }
 

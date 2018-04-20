@@ -118,12 +118,14 @@ class TeamController extends Controller
     public function postTeamsAdd(Request $request) {
         $this->validate($request, [
             'name' => 'required|min:2',
-            'description' => 'min:2'
+            'description' => 'required|min:2',
+            'formation' => 'required'
         ]);
 
         $team = new Team([
             'name' => $request->input('name'),
-            'description' => $request->input('description')
+            'description' => $request->input('description'),
+            'formation' => $request->input('formation')
         ]);
         $team->save();
 
@@ -144,7 +146,8 @@ class TeamController extends Controller
     public function postTeamsEdit($id, Request $request) {
         $this->validate($request, [
             'name' => 'required|min:2',
-            'description' => 'min:2'
+            'description' => 'required|min:2',
+            'formation' => 'required'
         ]);
 
         $team = Team::find($id);
@@ -154,6 +157,7 @@ class TeamController extends Controller
 
         $team->name = $request->input('name');
         $team->description = $request->input('description');
+        $team->formation = $request->input('formation');
         $team->save();
 
         return redirect()->route('teams.index')->with('info', 'Team updated: ' . $team->name);
