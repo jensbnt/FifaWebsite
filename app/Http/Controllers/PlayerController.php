@@ -12,16 +12,20 @@ class PlayerController extends Controller
 {
     public function getPlayersIndex(Request $request) {
         $paginate = 30;
-        $name = $request->has('name') ? $request->input('name') : "";
-        $term = "%" . $name . "%";
+        $term = "%" . $request->input('name') . "%";
 
         $players = Player::where('name', 'LIKE', $term)
+            ->where('position', 'LIKE', "%" . $request->input('position'))
+            ->where('cardtype', 'LIKE', "%" . $request->input('type') . "%")
             ->orderBy('rating', 'desc')
             ->paginate($paginate);
 
         $count = Player::where('name', 'LIKE', $term)->count();
 
-        return view('players.index', ['players' => $players->appends($request->except('page')), 'count' => $count, 'name' => $name, 'paginate' => $paginate]);
+        $positions = Player::select('position')->groupBy('position')->get();
+        $types = Player::select('cardtype')->groupBy('cardtype')->get();
+
+        return view('players.index', ['players' => $players->appends($request->except('page')), 'positions' => $positions, 'types' => $types, 'count' => $count, 'paginate' => $paginate, 'fname' => $request->input('name'), "fposition" => $request->input('position'), "ftype" => $request->input('type')]);
     }
 
     public function getPlayersView($id) {

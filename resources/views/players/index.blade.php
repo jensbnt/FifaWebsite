@@ -13,14 +13,26 @@
                     {{ csrf_field() }}
 
                     <div class="row form-group">
-                        <div class="col-md-10">
-                            <input id="name" type="text" class="form-control" name="name" placeholder="name" value="{{ old('name') != "" ? old('name') : $name }}">
+                        <div class="col-md-6">
+                            <input id="name" type="text" class="form-control" name="name" placeholder="name" value="{{ $fname }}">
+                        </div>
 
-                            @if ($errors->has('name'))
-                                <span class="help-block">
-                                    <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                            @endif
+                        <div class="col-md-2">
+                            <select id="position" class="form-control" name="position">
+                                <option {{ $fposition == "" ? "selected" : "" }}></option>
+                                @foreach($positions as $position)
+                                    <option value="{{ $position->position }}" {{ $fposition == $position->position ? "selected" : "" }}>{{ $position->position }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="col-md-2">
+                            <select id="type" class="form-control" name="type">
+                                <option {{ $ftype == "" ? "selected" : "" }}></option>
+                                @foreach($types as $type)
+                                    <option value="{{ $type->cardtype }}" {{ $ftype == $type->cardtype ? "selected" : "" }}>{{ $type->cardtype }}</option>
+                                @endforeach
+                            </select>
                         </div>
 
                         <div class="col-md-2">

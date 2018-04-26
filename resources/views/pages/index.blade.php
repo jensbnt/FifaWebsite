@@ -27,6 +27,7 @@
                 <div class="col-md-6">
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Recent Updates</h1></li>
+                        <li class="list-group-item"><b>v1.14</b> - Advanced sort</li>
                         <li class="list-group-item"><b>v1.13</b> - Team formations + pictures</li>
                         <li class="list-group-item"><b>v1.12</b> - Backups</li>
                         <li class="list-group-item"><b>v1.11</b> - Add players with .csv</li>
@@ -51,11 +52,9 @@
                         <li class="list-group-item">GK stats</li>
                         <li class="list-group-item">Custom team pictures</li>
                         <li class="list-group-item">Player match rating (x/10)</li>
-                        <li class="list-group-item">get routes -> secure post routes</li>
                         <li class="list-group-item">Backup loading screen</li>
                         <li class="list-group-item">Position and type database</li>
                         <li class="list-group-item">Nations and club database</li>
-                        <li class="list-group-item">Advanced sort</li>
                         <li class="list-group-item">User owned teams and team players</li>
                         <li class="list-group-item">Admin sections and accounts</li>
                         <li class="list-group-item">Trading manager</li>
