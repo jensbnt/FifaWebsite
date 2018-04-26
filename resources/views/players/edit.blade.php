@@ -155,7 +155,10 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <a href="{{ route('players.delete', ['id' => $player->id]) }}" class="btn btn-danger btn-ok">Delete</a>
+                    <form method="POST" action="{{ route('players.delete', ['id' => $player->id]) }}">
+                        {{ csrf_field() }}
+                        <button class="btn btn-danger btn-ok">Delete</button>
+                    </form>
                 </div>
             </div>
         </div>

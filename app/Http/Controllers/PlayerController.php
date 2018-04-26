@@ -164,7 +164,7 @@ class PlayerController extends Controller
         return redirect()->route('players.view', ['id' => $player->id])->with('info', 'Player updated: "' . $player->name . '"');
     }
 
-    public function getPlayersDelete($id) {
+    public function postPlayersDelete($id) {
         $player = Player::find($id);
 
         if(!isset($player))

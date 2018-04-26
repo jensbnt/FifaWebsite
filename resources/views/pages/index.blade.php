@@ -48,6 +48,9 @@
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Future Updates</h1></li>
                         <li class="list-group-item">Secure edit</li>
+                        <li class="list-group-item">GK stats</li>
+                        <li class="list-group-item">Custom team pictures</li>
+                        <li class="list-group-item">Player match rating (x/10)</li>
                         <li class="list-group-item">get routes -> secure post routes</li>
                         <li class="list-group-item">Backup loading screen</li>
                         <li class="list-group-item">Position and type database</li>

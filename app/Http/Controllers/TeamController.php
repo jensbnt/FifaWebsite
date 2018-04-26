@@ -165,7 +165,7 @@ class TeamController extends Controller
 
     /* DELETE */
 
-    public function getTeamsDelete($id) {
+    public function postTeamsDelete($id) {
         $team = Team::find($id);
 
         if(!isset($team))

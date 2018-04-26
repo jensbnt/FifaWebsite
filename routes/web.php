@@ -73,8 +73,8 @@ Route::group(['prefix' => 'players', 'middleware' => 'auth'], function () {
         'as' => 'players.edit'
     ]);
 
-    Route::get('delete/{id}', [
-        'uses' => 'PlayerController@getPlayersDelete',
+    Route::post('delete/{id}', [
+        'uses' => 'PlayerController@postPlayersDelete',
         'as' => 'players.delete'
     ]);
 
@@ -120,8 +120,8 @@ Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
         'as' => 'teams.edit'
     ]);
 
-    Route::get('delete/{id}', [
-        'uses' => 'TeamController@getTeamsDelete',
+    Route::post('delete/{id}', [
+        'uses' => 'TeamController@postTeamsDelete',
         'as' => 'teams.delete'
     ]);
 
