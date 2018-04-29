@@ -78,11 +78,6 @@ Route::group(['prefix' => 'players', 'middleware' => 'auth'], function () {
         'uses' => 'PlayerController@postPlayersDelete',
         'as' => 'players.delete'
     ]);
-
-    Route::get('top', [
-        'uses' => 'PlayerController@getPlayersTop',
-        'as' => 'players.top'
-    ]);
 });
 
 Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
@@ -144,6 +139,18 @@ Route::group(['prefix' => 'teams', 'middleware' => 'auth'], function () {
     Route::post('addgame/{id}', [
         'uses' => 'TeamController@postTeamsAddGame',
         'as' => 'teams.addgame'
+    ]);
+});
+
+Route::group(['prefix' => 'stats', 'middleware' => 'auth'], function () {
+    Route::get('', [
+        'uses' => 'StatsController@getStatsIndex',
+        'as' => 'stats.index'
+    ]);
+
+    Route::get('top', [
+        'uses' => 'StatsController@getStatsTop',
+        'as' => 'stats.top'
     ]);
 });
 

@@ -26,7 +26,7 @@
                     </div>
                 </li>
 
-                <li class="nav-item"><a class="nav-link" href="{{ route('players.top') }}">Top players</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ route('stats.index') }}">Stats</a></li>
                 <li class="nav-item"><a class="nav-link" href="{{ route('backup.index') }}">Backup</a></li>
             @endif
         </ul>

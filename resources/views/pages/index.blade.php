@@ -33,6 +33,7 @@
                 <div class="col-md-6">
                     <ul class="list-group mb-3">
                         <li class="list-group-item"><h1>Recent Updates</h1></li>
+                        <li class="list-group-item"><b>v1.15</b> - Stats</li>
                         <li class="list-group-item"><b>v1.14</b> - Advanced sort</li>
                         <li class="list-group-item"><b>v1.13</b> - Team formations + pictures</li>
                         <li class="list-group-item"><b>v1.12</b> - Backups</li>
