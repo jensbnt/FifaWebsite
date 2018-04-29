@@ -11,9 +11,10 @@
 |
 */
 
-Route::get('/', function () {
-    return view('pages.index');
-})->name('pages.index');
+Route::get('', [
+    'uses' => 'PagesController@getIndex',
+    'as' => 'pages.index'
+]);
 
 Route::group(['prefix' => 'backups', 'middleware' => 'auth'], function () {
     Route::get('', [

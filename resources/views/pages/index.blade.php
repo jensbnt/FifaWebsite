@@ -12,15 +12,21 @@
                 </div>
             </div>
         @else
-            <div class="row">
-                <div class="col-md">
-                    <div class="jumbotron">
-                        <h1 class="display-4">Welcome</h1>
-                        <p class="lead">"Jelle can't work with laravel or lavander." - Jens Beernaert 2018</p>
-                        <hr class="my-4">
-                        <p><a href="{{ route('players.index') }}">Players</a></p>
-                        <p><a href="{{ route('teams.index') }}">Teams</a></p>
+            <div class="row text-center align-items-center">
+                <div class="col-md-2 mb-3">
+                    <img src="https://lh3.googleusercontent.com/I3PdglBg645OuLJFv8_ZUOgAmgniL73KF9-V0Fxi8-_-eSN5KJed41GRwnlcmLnUbFc" alt="" class="card-img-top">
+                </div>
+                <div class="col-md-8 mb-3">
+                    <div class="card">
+                        <div class="card-body">
+                            <h1 class="display-4">Welcome</h1>
+                            <p class="lead">"Jelle can't work with laravel or lavander." - Jens Beernaert 2018</p>
+                        </div>
+
                     </div>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <img src="https://s3.amazonaws.com/freebiesupply/large/2x/playstation-logo-png-transparent.png" alt="" class="card-img-top">
                 </div>
             </div>
             <div class="row">
