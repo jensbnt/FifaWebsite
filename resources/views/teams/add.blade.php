@@ -69,6 +69,9 @@
                             </div>
                         </form>
                     </div>
+                    <div class="card-footer text-center">
+                        <a href="{{ route('teams.index') }}">Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>

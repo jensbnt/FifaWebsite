@@ -13,6 +13,9 @@
                     <div class="card-header">
                         <h1>{{ $teamplayer->player->name }} - stats</h1>
                         <p>This is the page that lets you edit a team player's stats. These stats only belong to this player's current team. All fields are required.</p>
+
+                        <a href="{{ route('players.view', ['id' => $teamplayer->player->id]) }}">{{ $teamplayer->player->name }}</a> -
+                        <a href="{{ route('teams.view', ['id' => $teamplayer->team->id]) }}">{{ $teamplayer->team->name }}</a>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route("teams.playerview", ['id' => $teamplayer->id]) }}">
@@ -69,9 +72,8 @@
                             </div>
                         </form>
                     </div>
-                    <div class="card-footer">
-                        <a href="{{ route('players.view', ['id' => $teamplayer->player->id]) }}">{{ $teamplayer->player->name }}</a> -
-                        <a href="{{ route('teams.view', ['id' => $teamplayer->team->id]) }}">{{ $teamplayer->team->name }}</a>
+                    <div class="card-footer text-center">
+                        <a href="{{ route('teams.view', ['id' => $teamplayer->team->id]) }}">Cancel</a>
                     </div>
                 </div>
             </div>

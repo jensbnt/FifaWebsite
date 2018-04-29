@@ -41,6 +41,9 @@
                             </div>
                         {{ Form::close() }}
                     </div>
+                    <div class="card-footer text-center">
+                        <a href="{{ route('players.index') }}">Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>

@@ -138,6 +138,9 @@
                             </div>
                         </form>
                     </div>
+                    <div class="card-footer text-center">
+                        <a href="{{ route('players.view', ['id' => $player->id]) }}">Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>

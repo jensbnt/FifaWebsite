@@ -41,6 +41,9 @@
                             </div>
                         </form>
                     </div>
+                    <div class="card-footer text-center">
+                        <a href="{{ route('teams.view', ['id' => $team->id]) }}">Cancel</a>
+                    </div>
                 </div>
             </div>
         </div>
