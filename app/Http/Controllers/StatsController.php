@@ -55,7 +55,7 @@ class StatsController extends Controller
                 ->paginate($paginate);
         }
 
-        return view('players.top', ['players' => $players->appends($request->except('page')), 'sort' => $request->input('sort'), 'paginate' => $paginate]);
+        return view('stats.top', ['players' => $players->appends($request->except('page')), 'sort' => $request->input('sort'), 'paginate' => $paginate]);
     }
 
     public function getStatsNations() {
