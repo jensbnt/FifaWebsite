@@ -75,6 +75,8 @@ class PlayerController extends Controller
     }
 
     public function postPlayersAddFile(Request $request) {
+        return redirect()->route('players.index')->with('fail', "Adding players with .csv currently disabled");
+
         $this->validate($request, [
             'file' => 'required'
         ]);

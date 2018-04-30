@@ -22,8 +22,6 @@ class CreatePlayersTable extends Migration
             $table->string('position');
             $table->string('cardtype');
             $table->string('player_img_link')->default("https://www.shareicon.net/data/512x512/2017/02/28/880084_people_512x512.png");
-            $table->string('club_img_link')->default("");
-            $table->string('nation_img_link')->default("");
             $table->integer('nation_id')->default(0);
             $table->integer('club_id')->default(0);
         });
