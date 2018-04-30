@@ -69,8 +69,16 @@
                                     <span class="badge badge-success">Team</span>
                                 @endif
                             </td>
-                            <td><img style="width: 30px;" src="{{ $players[$i]->nation_img_link }}" alt="Card image cap"></td>
-                            <td><img style="width: 30px;" src="{{ $players[$i]->club_img_link }}" alt="Card image cap"></td>
+                            <td>
+                                @if($players[$i]->nation != null)
+                                    <img style="width: 30px;" src="{{ $players[$i]->nation->nation_img_link }}">
+                                @endif
+                            </td>
+                            <td>
+                                @if($players[$i]->club != null)
+                                    <img style="width: 30px;" src="{{ $players[$i]->club->club_img_link }}">
+                                @endif
+                            </td>
                             <td><a href="{{ route('players.view', ['id' => $players[$i]->id]) }}">{{ $players[$i]->name }}</a></td>
                             <td>{{ $players[$i]->rating }}</td>
                             <td>{{ $players[$i]->position }}</td>

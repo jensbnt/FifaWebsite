@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Club;
+use App\Nation;
 use App\Player;
 use App\Team;
 use App\TeamPlayer;
@@ -12,8 +14,9 @@ class BackupController extends Controller
     function getBackupIndex() {
         $playersempty = count(Player::all()) == 0;
         $teamsempty = count(Team::all()) == 0;
+        $configallowed = count(Nation::all()) == 0 && count(Club::all()) == 0;
 
-        return view('pages.backup', ['playersempty' => $playersempty, 'teamsempty' => $teamsempty]);
+        return view('pages.backup', ['playersempty' => $playersempty, 'teamsempty' => $teamsempty, 'configallowed' => $configallowed]);
     }
 
     function postBackupIndex(Request $request) {
@@ -25,6 +28,8 @@ class BackupController extends Controller
             return $this->teamMakeBackup();
         } else if($request->has('team-load')) {
             return $this->teamLoadBackup();
+        } else if($request->has('config')) {
+            return $this->configureNationCLub();
         } else {
             return redirect()->route('backup.index')->with('info', 'Error');
         }
@@ -34,6 +39,14 @@ class BackupController extends Controller
         $file = public_path().'/json/player-backup.json';
         $players = Player::all();
         file_put_contents($file, json_encode($players));
+
+        /*$file = public_path().'/json/nation-backup.json';
+        $nations = Nation::all();
+        file_put_contents($file, json_encode($nations));
+
+        $file = public_path().'/json/clubs-backup.json';
+        $clubs = Club::all();
+        file_put_contents($file, json_encode($clubs));*/
 
         return redirect()->route('backup.index')->with('info', 'Made backup of players');
     }
@@ -125,5 +138,50 @@ class BackupController extends Controller
         }
 
         return redirect()->route('backup.index')->with('info', 'Loaded backup of teams and team players');
+    }
+
+    function configureNationCLub() {
+        Nation::truncate();
+        Club::truncate();
+
+        $nations = Player::select('nation_img_link')
+            ->where('nation_img_link', '<>', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/No_sign.svg/450px-No_sign.svg.png')
+            ->groupBy('nation_img_link')->get();
+        foreach ($nations as $nation) {
+            $entry = new Nation([
+                'name' => 'Nation',
+                'nation_img_link' => $nation->nation_img_link,
+            ]);
+            $entry->save();
+        }
+
+        $clubs = Player::select('club_img_link')
+            ->where('club_img_link', '<>', 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/No_sign.svg/450px-No_sign.svg.png')
+            ->groupBy('club_img_link')->get();
+        foreach ($clubs as $club) {
+            $entry = new Club([
+                'name' => 'Club',
+                'club_img_link' => $club->club_img_link,
+            ]);
+            $entry->save();
+        }
+
+        $players = Player::all();
+        foreach ($players as $player) {
+            $nation = Nation::where('nation_img_link', $player->nation_img_link)->first();
+            $club = Club::where('club_img_link', $player->club_img_link)->first();
+
+            if(isset($nation)) {
+                $player->nation_id = $nation->id;
+                $player->nation_img_link = "";
+            }
+            if(isset($club)) {
+                $player->club_id = $club->id;
+                $player->club_img_link = "";
+            }
+            $player->save();
+        }
+
+        return redirect()->route('backup.index')->with('info', 'Config succesfull');
     }
 }

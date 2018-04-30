@@ -99,34 +99,6 @@
                             </div>
 
                             <div class="row form-group">
-                                <label for="nation_img_link" class="col-md-2 offset-md-1 control-label">Nation image</label>
-
-                                <div class="col-md-8">
-                                    <input id="nation_img_link" type="text" class="form-control" name="nation_img_link" value="{{ old('nation_img_link') == "" ? $player->nation_img_link : old('nation_img_link') }}">
-
-                                    @if ($errors->has('nation_img_link'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('nation_img_link') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="row form-group">
-                                <label for="club_img_link" class="col-md-2 offset-md-1 control-label">Club image</label>
-
-                                <div class="col-md-8">
-                                    <input id="club_img_link" type="text" class="form-control" name="club_img_link" value="{{ old('club_img_link') == "" ? $player->club_img_link : old('club_img_link') }}">
-
-                                    @if ($errors->has('club_img_link'))
-                                        <span class="help-block">
-                                            <strong>{{ $errors->first('club_img_link') }}</strong>
-                                        </span>
-                                    @endif
-                                </div>
-                            </div>
-
-                            <div class="row form-group">
                                 <div class="col-md-4 offset-md-3">
                                     <button type="submit" class="btn btn-dark btn-block">
                                         Update player

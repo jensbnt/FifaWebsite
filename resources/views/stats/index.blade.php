@@ -37,7 +37,7 @@
                     <div class="card-body">
                         <h1>Nations</h1>
                         <p>This page contains all nations.</p>
-                        <a href="" class="btn btn-primary">Visit stats</a>
+                        <a href="{{ route('stats.nations') }}" class="btn btn-primary">Visit stats</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                     <div class="card-body text-center">
                         <h1>Clubs</h1>
                         <p>This page contains all clubs.</p>
-                        <a href="" class="btn btn-primary">Visit stats</a>
+                        <a href="{{ route('stats.clubs') }}" class="btn btn-primary">Visit stats</a>
                     </div>
                 </div>
             </div>

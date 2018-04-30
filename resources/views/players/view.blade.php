@@ -49,10 +49,14 @@
                 </div>
                 <div class="row align-items-center">
                     <div class="col-md-6">
-                        <img class="card-img-top" src="{{ $player->nation_img_link }}" alt="Card image cap">
+                        @if($player->nation != null)
+                            <img class="card-img-top" src="{{ $player->nation->nation_img_link }}">
+                        @endif
                     </div>
                     <div class="col-md-6">
-                        <img class="card-img-top" src="{{ $player->club_img_link }}" alt="Card image cap">
+                        @if($player->club != null)
+                            <img class="card-img-top" src="{{ $player->club->club_img_link }}">
+                        @endif
                     </div>
                 </div>
             </div>

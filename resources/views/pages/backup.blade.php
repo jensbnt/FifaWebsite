@@ -21,7 +21,7 @@
                     </div>
                     <div class="card-body text-center">
                         <h1>Players</h1>
-                        <p>This sections handles the players. This backup saves all players and their personal information. This update generally takes the longest, as there are over 4000 players.</p>
+                        <p>This sections handles the players. This backup saves all players (and their info), nations and clubs. This update generally takes the longest, as there are over 4000 players.</p>
                         <div class="row">
                             <form class="col-md-6" method="POST" action="{{ route('backup.index') }}">
                                 {{ csrf_field() }}
@@ -55,6 +55,26 @@
                                 {{ csrf_field() }}
                                 <input type="hidden" name="team-load" value="">
                                 <button type="submit" class="btn btn-success btn-block">Load</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <div class="card mb-3">
+                    <div class="card-header text-center">
+                        <span class="text-muted">Config</span>
+                    </div>
+                    <div class="card-body text-center">
+                        <h1>Configure Nations & Clubs</h1>
+                        <p>---MESSAGE---</p>
+                        <div class="row">
+                            <form class="col-md-6 offset-md-3" method="POST" action="{{ route('backup.index') }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" name="config" value="">
+                                <button type="submit" class="btn btn-primary btn-block" {{ $configallowed ? "" : "disabled" }}>Config</button>
                             </form>
                         </div>
                     </div>

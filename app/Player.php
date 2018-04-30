@@ -11,4 +11,12 @@ class Player extends Model
     public function teamPlayers() {
         return $this->hasMany('\App\TeamPlayer', 'player_id', 'id');
     }
+
+    public function nation() {
+        return $this->belongsTo('\App\Nation', 'nation_id', 'id');
+    }
+
+    public function club() {
+        return $this->belongsTo('\App\Club', 'club_id', 'id');
+    }
 }

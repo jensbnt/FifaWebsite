@@ -151,8 +151,6 @@ class PlayerController extends Controller
             'position' => 'required',
             'cardtype' => 'required',
             'player_img_link' => 'required|active_url',
-            'nation_img_link' => 'required|active_url',
-            'club_img_link' => 'required|active_url'
         ]);
 
 
@@ -161,8 +159,6 @@ class PlayerController extends Controller
         $player->position = $request->input('position');
         $player->cardtype = $request->input('cardtype');
         $player->player_img_link = $request->input('player_img_link');
-        $player->nation_img_link = $request->input('nation_img_link');
-        $player->club_img_link = $request->input('club_img_link');
         $player->save();
 
         return redirect()->route('players.view', ['id' => $player->id])->with('info', 'Player updated: "' . $player->name . '"');

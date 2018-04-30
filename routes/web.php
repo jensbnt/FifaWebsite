@@ -152,6 +152,16 @@ Route::group(['prefix' => 'stats', 'middleware' => 'auth'], function () {
         'uses' => 'StatsController@getStatsTop',
         'as' => 'stats.top'
     ]);
+
+    Route::get('nations', [
+        'uses' => 'StatsController@getStatsNations',
+        'as' => 'stats.nations'
+    ]);
+
+    Route::get('clubs', [
+        'uses' => 'StatsController@getStatsClubs',
+        'as' => 'stats.clubs'
+    ]);
 });
 
 Auth::routes();

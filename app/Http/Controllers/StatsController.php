@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Club;
+use App\Nation;
 use App\Player;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -54,5 +56,19 @@ class StatsController extends Controller
         }
 
         return view('players.top', ['players' => $players->appends($request->except('page')), 'sort' => $request->input('sort'), 'paginate' => $paginate]);
+    }
+
+    public function getStatsNations() {
+        //$nations = Player::select('nation_img_link')->groupBy('nation_img_link')->get();
+        $nations = Nation::all();
+
+        return view('stats.nations', ['nations' => $nations]);
+    }
+
+    public function getStatsClubs() {
+        //$clubs = Player::select('club_img_link')->groupBy('club_img_link')->get();
+        $clubs = Club::all();
+
+        return view('stats.clubs', ['clubs' => $clubs]);
     }
 }
