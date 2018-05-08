@@ -12,33 +12,34 @@
                 <div class="card">
                     <div class="card-header">
                         <h1>Add players (.csv)</h1>
-                        <p>Add a bunch of players to the database. You can edit these players and their pictures later. The format of these players should be [NAME, RATING, POSITION, TYPE, PLAYER_IMG_LINK, NATION_IMG_LINK, CLUB_IMG_LINK].</p>
+                        <p>Add a bunch of players to the database. You can edit these players and their pictures later. The format of these players should be:</p>
+                        <p><b>NAME | RATING | POSITION | TYPE | PLAYER_IMG | NATION_ID | CLUB_ID</b></p>
                     </div>
                     <div class="card-body">
                         {{ Form::open(array('url' => route('players.addfile'), 'files' => true)) }}
-                            {{ csrf_field() }}
+                        {{ csrf_field() }}
 
-                            <div class="row form-group">
-                                <label for="file" class="col-md-3 control-label">Player file (.csv)</label>
+                        <div class="row form-group">
+                            <label for="file" class="col-md-3 control-label">Player file (.csv)</label>
 
-                                <div class="col-md-8">
-                                    {{ Form::file('file') }}
+                            <div class="col-md-8">
+                                {{ Form::file('file') }}
 
-                                    @if ($errors->has('file'))
-                                        <span class="help-block">
+                                @if ($errors->has('file'))
+                                    <span class="help-block">
                                             <strong>{{ $errors->first('file') }}</strong>
                                         </span>
-                                    @endif
-                                </div>
+                                @endif
                             </div>
+                        </div>
 
-                            <div class="row form-group">
-                                <div class="col-md-4 offset-md-3">
-                                    <button type="submit" class="btn btn-dark btn-block">
-                                        Add players
-                                    </button>
-                                </div>
+                        <div class="row form-group">
+                            <div class="col-md-4 offset-md-3">
+                                <button type="submit" class="btn btn-dark btn-block">
+                                    Add players
+                                </button>
                             </div>
+                        </div>
                         {{ Form::close() }}
                     </div>
                     <div class="card-footer text-center">

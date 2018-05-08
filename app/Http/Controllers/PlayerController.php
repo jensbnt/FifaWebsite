@@ -55,7 +55,9 @@ class PlayerController extends Controller
             'name' => 'required|min:2',
             'rating' => 'required|numeric|min:0|max:99',
             'position' => 'required',
-            'cardtype' => 'required'
+            'cardtype' => 'required',
+            'nation_id' => 'required|numeric|min:0',
+            'club_id' => 'required|numeric|min:0'
         ]);
 
         $player = new Player([
@@ -63,6 +65,8 @@ class PlayerController extends Controller
             'rating' => $request->input('rating'),
             'position' => $request->input('position'),
             'cardtype' => $request->input('cardtype'),
+            'nation_id' => $request->input('nation_id'),
+            'club_id' => $request->input('club_id'),
             'seeded' => false
         ]);
         $player->save();
@@ -75,8 +79,6 @@ class PlayerController extends Controller
     }
 
     public function postPlayersAddFile(Request $request) {
-        return redirect()->route('players.index')->with('fail', "Adding players with .csv currently disabled");
-
         $this->validate($request, [
             'file' => 'required'
         ]);
@@ -95,17 +97,13 @@ class PlayerController extends Controller
                     $errors++;
                 } elseif(!is_numeric($data[1])) {
                     $errors++;
-                } elseif(filter_var($data[4], FILTER_VALIDATE_URL) === false) {
+                }/* elseif(!is_numeric($data[5])) {
                     $errors++;
-                } elseif(filter_var($data[5], FILTER_VALIDATE_URL) === false) {
+                } elseif(!is_numeric($data[6])) {
                     $errors++;
-                } elseif(filter_var($data[6], FILTER_VALIDATE_URL) === false) {
+                } */elseif(filter_var($data[4], FILTER_VALIDATE_URL) === false) {
                     $errors++;
                 } elseif(getimagesize($data[4]) === false) {
-                    $errors++;
-                } elseif(getimagesize($data[5]) === false) {
-                    $errors++;
-                } elseif(getimagesize($data[6]) === false) {
                     $errors++;
                 } else {
                     $playercount++;
@@ -116,9 +114,10 @@ class PlayerController extends Controller
                         'rating' => $data[1],
                         'position' => $data[2],
                         'cardtype' => $data[3],
-                        'club_img_link' => $data[4],
-                        'nation_img_link' => $data[5],
-                        'player_img_link' => $data[6],
+                        'player_img_link' => $data[4],
+                        'nation_id' => 0,
+                        'club_id' => 0,
+                        'seeded' => 0
                     ]);
                     $player->save();
                 }
@@ -153,6 +152,8 @@ class PlayerController extends Controller
             'position' => 'required',
             'cardtype' => 'required',
             'player_img_link' => 'required|active_url',
+            'nation_id' => 'required|numeric|min:0',
+            'club_id' => 'required|numeric|min:0'
         ]);
 
 
@@ -161,6 +162,8 @@ class PlayerController extends Controller
         $player->position = $request->input('position');
         $player->cardtype = $request->input('cardtype');
         $player->player_img_link = $request->input('player_img_link');
+        $player->nation_id = $request->input('nation_id');
+        $player->club_id = $request->input('club_id');
         $player->save();
 
         return redirect()->route('players.view', ['id' => $player->id])->with('info', 'Player updated: "' . $player->name . '"');

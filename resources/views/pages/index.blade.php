@@ -2,33 +2,33 @@
 
 @section('content')
     <div class="container">
+        <div class="row text-center align-items-center">
+            <div class="col-md-2 mb-3">
+                <img src="https://lh3.googleusercontent.com/I3PdglBg645OuLJFv8_ZUOgAmgniL73KF9-V0Fxi8-_-eSN5KJed41GRwnlcmLnUbFc" alt="" class="card-img-top">
+            </div>
+            <div class="col-md-8 mb-3">
+                <h1 class="display-4">Welcome</h1>
+                <p class="lead">"Jelle can't work with laravel or lavander." - Jens Beernaert 2018</p>
+            </div>
+            <div class="col-md-2 mb-3">
+                <img src="https://s3.amazonaws.com/freebiesupply/large/2x/playstation-logo-png-transparent.png" alt="" class="card-img-top">
+            </div>
+        </div>
         @if(!Auth::check())
             <div class="row">
-                <div class="col-md">
-                    <h1>Welcome</h1>
-                    <p>It seems you are not logged in!</p>
-                    <p><a href="{{ route('auth.signin') }}">Login</a></p>
-                    <p><a href="{{ route('auth.register') }}">Register</a></p>
+                <div class="col-md-4 offset-md-4 text-center">
+                    <div class="card">
+                        <div class="card-header">
+                            Not logged in
+                        </div>
+                        <div class="card-body">
+                            <p><a href="{{ route('auth.signin') }}">Login</a></p>
+                            <p><a href="{{ route('auth.register') }}">Register</a></p>
+                        </div>
+                    </div>
                 </div>
             </div>
         @else
-            <div class="row text-center align-items-center">
-                <div class="col-md-2 mb-3">
-                    <img src="https://lh3.googleusercontent.com/I3PdglBg645OuLJFv8_ZUOgAmgniL73KF9-V0Fxi8-_-eSN5KJed41GRwnlcmLnUbFc" alt="" class="card-img-top">
-                </div>
-                <div class="col-md-8 mb-3">
-                    <div class="card">
-                        <div class="card-body">
-                            <h1 class="display-4">Welcome</h1>
-                            <p class="lead">"Jelle can't work with laravel or lavander." - Jens Beernaert 2018</p>
-                        </div>
-
-                    </div>
-                </div>
-                <div class="col-md-2 mb-3">
-                    <img src="https://s3.amazonaws.com/freebiesupply/large/2x/playstation-logo-png-transparent.png" alt="" class="card-img-top">
-                </div>
-            </div>
             <div class="row">
                 <div class="col-md-6">
                     <ul class="list-group mb-3">

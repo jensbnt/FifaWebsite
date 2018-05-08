@@ -85,6 +85,34 @@
                             </div>
 
                             <div class="row form-group">
+                                <label for="nation_id" class="col-md-2 offset-md-1 control-label">Nation ID</label>
+
+                                <div class="col-md-8">
+                                    <input id="nation_id" type="number" class="form-control" name="nation_id" value="{{ old('nation_id') == "" ? $player->nation_id : old('nation_id') }}">
+
+                                    @if ($errors->has('nation_id'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('nation_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
+                                <label for="club_id" class="col-md-2 offset-md-1 control-label">Club ID</label>
+
+                                <div class="col-md-8">
+                                    <input id="club_id" type="number" class="form-control" name="club_id" value="{{ old('club_id') == "" ? $player->club_id : old('club_id') }}">
+
+                                    @if ($errors->has('club_id'))
+                                        <span class="help-block">
+                                            <strong>{{ $errors->first('club_id') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+                            </div>
+
+                            <div class="row form-group">
                                 <label for="player_img_link" class="col-md-2 offset-md-1 control-label">Player image</label>
 
                                 <div class="col-md-8">
