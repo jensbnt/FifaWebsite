@@ -12,7 +12,7 @@
                 <div class="col-md-2">
                     <div class="card mb-3">
                         <div class="card-header text-center">
-                            {{ $nation->name }}
+                            {{ $nation->name }} {{ $nation->id }}
                         </div>
                         <div class="card-body">
                             <img class="rounded mx-auto d-block" src="{{ $nation->nation_img_link }}" style="width: 100%;">
