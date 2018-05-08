@@ -1,6 +1,9 @@
-<nav class="navbar navbar-fixed-top navbar-expand-md navbar-dark bg-dark" role="navigation">
+<nav class="navbar sticky-top navbar-expand-md navbar-dark bg-dark" role="navigation">
     <div class="navbar-header">
-        <a class="navbar-brand" href="{{ route('pages.index') }}">FifaApp</a>
+        <a class="navbar-brand" href="{{ route('pages.index') }}">
+            <img src="https://lh3.googleusercontent.com/I3PdglBg645OuLJFv8_ZUOgAmgniL73KF9-V0Fxi8-_-eSN5KJed41GRwnlcmLnUbFc" width="30" height="30" class="d-inline-block align-middle" alt="">
+            FifaApp
+        </a>
     </div>
     <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav">
