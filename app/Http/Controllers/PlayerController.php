@@ -115,8 +115,8 @@ class PlayerController extends Controller
                         'position' => $data[2],
                         'cardtype' => $data[3],
                         'player_img_link' => $data[4],
-                        'nation_id' => 0,
-                        'club_id' => 0,
+                        'nation_id' => $data[5],
+                        'club_id' => $data[6],
                         'seeded' => 0
                     ]);
                     $player->save();
